@@ -20,7 +20,7 @@ TODO Change this to the correct repository but this is where the source lives fo
 
 1. Run the scheme to setup the database for the app.
    ```
-   /opt/oracle/sqlcl/bin/sql admin/Commodore-64@mnociatp_high @/home/opc/micronaut/micronaut/files/app/data/createScheme.sql
+   /opt/oracle/sqlcl/bin/sql admin/Commodore-64@mnociatp_high @/home/opc/micronaut/micronaut/files/data/createSchema.sql
    ```
 
 1. Build the repository.
@@ -36,7 +36,7 @@ TODO Change this to the correct repository but this is where the source lives fo
    ./gradlew -DMICRONAUT_OCI_DEMO_PASSWORD=HandsOnLabUser1 run
    java -jar -DMICRONAUT_OCI_DEMO_PASSWORD HandsOnLabUser1 /app/micronaut-data-jdbc-graal-atp-0.1-all.jar
    ```
-   
+
 1. The snippet used to run your application locally. It will look similar to this:
 
    ```shell script
