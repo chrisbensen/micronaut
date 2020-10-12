@@ -13,13 +13,14 @@ TODO a demo scheme with pre-loaded data is available. Use this:
 https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/autonomous-sample-data.html#GUID-4BB2B49B-0C20-4E38-BCC7-A61D3F45390B
 
 1. Clone the repository.
-   ```TODO Change this to the correct repository but this is where the source lives for now.
-   git clone https://github.com/chrisbensen/micronaut-graal-lab
+TODO Change this to the correct repository but this is where the source lives for now.
+   ```
+   git clone https://github.com/chrisbensen/micronaut
    ```
 
 1. Run the scheme to setup the database for the app.
    ```
-   /opt/oracle/sqlcl/bin/sql admin/Commodore-64@mnociatp_high @/home/opc/micronaut-graal-lab/micronaut-helidon/micronaut/files/app/data/createScheme.sql
+   /opt/oracle/sqlcl/bin/sql admin/Commodore-64@mnociatp_high @/home/opc/micronaut/micronaut/files/app/data/createScheme.sql
    ```
 
 1. Build the repository.
