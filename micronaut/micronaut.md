@@ -30,21 +30,42 @@ TODO Change this to the correct repository but this is where the source lives fo
    ./gradlew assemble
    ```
 
-1. Run the app.
-   TODO Fix, It fails here
-   ```
-   ./gradlew -DMICRONAUT_OCI_DEMO_PASSWORD=HandsOnLabUser1 run
-   java -jar -DMICRONAUT_OCI_DEMO_PASSWORD HandsOnLabUser1 /app/micronaut-data-jdbc-graal-atp-0.1-all.jar
+1. Set the environment variables:
 
-   java -DDATASOURCES_DEFAULT_PASSWORD=HandsOnLabUser1 -jar /home/opc/micronaut/micronaut/files/app/build/libs/example-atp-0.1-all.jar
+   ```
+   export DATASOURCES_DEFAULT_PASSWORD=HandsOnLabUser1
+   ```
+
+      **Note:** TNS_ADMIN must be set for the app to use the wallet. This is set in [Setup OCI](setup_oci.md)
+
+1. Run the app.
+   ```
+   ./gradlew run -t
+   ```
+
+      **Note:** that the -t argument is optional and activates continuous build so if you make changes to your application it will be automatically restart. This is extremely useful when developing an application.
+
+   If any any point you want to deploy your application and use the JVM:
+   ```
    java -jar /home/opc/micronaut/micronaut/files/app/build/libs/example-atp-0.1-all.jar
    ```
 
-1. The snippet used to run your application locally. It will look similar to this:
+1. Access the endpoint.
 
-   ```shell script
-   # run on local machine
-   ./gradlew -DMICRONAUT_OCI_DEMO_PASSWORD [your generated password] run
+   You can now access http://localhost:8080/pets for the /pet endpoint and http://localhost:8080/owners for the /owners endpoint. For example:
+   ```
+   curl -i http://localhost:8080/pets
+   ```
+
+   Will output:
+   ```
+   HTTP/1.1 200 OK
+   Date: Tue, 13 Oct 2020 21:23:42 GMT
+   Content-Type: application/json
+   content-length: 55
+   connection: keep-alive
+
+   [{"name":"Dino"},{"name":"Baby Puss"},{"name":"Hoppy"}]
    ```
 
 ## Continue through the following section

@@ -204,7 +204,7 @@ You now have a database and a VM that is setup with all the tools needed and cre
 
 ## Continue through the following section
 
-1. Setup Development [Setup Development](setup-development.md)
+1. Setup Development [Setup Development](setup_development.md)
 
 ## Want to Learn More?
 
