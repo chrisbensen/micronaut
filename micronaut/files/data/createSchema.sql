@@ -13,6 +13,13 @@ CREATE TYPE,
 CREATE SYNONYM
 TO mnocidemo;
 
+
+CREATE TABLE "PET" ("ID" VARCHAR(36),"OWNER_ID" NUMBER(19) NOT NULL,"NAME" VARCHAR(255) NOT NULL,"TYPE" VARCHAR(255) NOT NULL);
+
+/*CREATE SEQUENCE "OWNER_SEQ" MINVALUE 1 START WITH 1 NOCACHE NOCYCLE;*/
+
+CREATE TABLE "OWNER" ("ID" NUMBER(19) PRIMARY KEY NOT NULL,"AGE" NUMBER(10) NOT NULL,"NAME" VARCHAR(255) NOT NULL);
+
 /* for SQL Developer Web */
 BEGIN
  ords_admin.enable_schema(
@@ -22,8 +29,8 @@ BEGIN
   p_url_mapping_pattern => 'mnocidemo',
   p_auto_rest_auth => NULL
  );
- commit;
+ COMMIT;
 END;
 /
 
-exit;
+EXIT;

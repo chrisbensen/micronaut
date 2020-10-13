@@ -25,17 +25,17 @@ lab runs in the cloud so nothing needs to be installed on your local machine.
 #* [GraalVM](https://github.com/graalvm/graalvm-ce-builds/releases/tag/vm-20.1.0)
 #* [VS Code](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjijsO-we7qAhVjMX0KHdJTCgYQFjAAegQIBRAB&url=https%3A%2F%2Fcode.visualstudio.com%2Fdownload&usg=AOvVaw11fc5fOXYIyxQh75jYLjXg) or [IntelliJ](https://www.jetbrains.com/idea/download/#section=mac)
 
-## Naming conventions
+## Variables and Passwords
 
 TODO If any of these change search the entire lab and change them.
 TODO Change the names to better names before publishing the lab.
 
 **mnociatp** is the name of the database.
-**mnocidemo** is the name of the user created for the database.
-**Wallet Password** is **HandsOnLabUser1**
 **ATP Password** is **Commodore-64**
+**mnocidemo** is the name of the user created for the database.
+**mnocidemo username password** is **HandsOnLabUser1**
+**Wallet Password** is **Pw4ZipFile**
 **mnocidemo** is the name of the VM Instance
-
 
 ## Part 1 - Create an Oracle Always-Free Cloud Account
 

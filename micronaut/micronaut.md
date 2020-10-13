@@ -25,7 +25,7 @@ TODO Change this to the correct repository but this is where the source lives fo
 
 1. Build the repository.
    ```
-   cd /home/opc/micronaut-graal-lab/micronaut-helidon/micronaut/files/app
+   cd /home/opc/micronaut/micronaut/files/app
 
    ./gradlew assemble
    ```
@@ -35,6 +35,9 @@ TODO Change this to the correct repository but this is where the source lives fo
    ```
    ./gradlew -DMICRONAUT_OCI_DEMO_PASSWORD=HandsOnLabUser1 run
    java -jar -DMICRONAUT_OCI_DEMO_PASSWORD HandsOnLabUser1 /app/micronaut-data-jdbc-graal-atp-0.1-all.jar
+
+   java -DDATASOURCES_DEFAULT_PASSWORD=HandsOnLabUser1 -jar /home/opc/micronaut/micronaut/files/app/build/libs/example-atp-0.1-all.jar
+   java -jar /home/opc/micronaut/micronaut/files/app/build/libs/example-atp-0.1-all.jar
    ```
 
 1. The snippet used to run your application locally. It will look similar to this:
