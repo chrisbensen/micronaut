@@ -16,7 +16,8 @@ public class Pet {
     @AutoPopulated
     private UUID id;
     private String name;
-    @Relation(Relation.Kind.MANY_TO_ONE)
+    //@Relation(Relation.Kind.MANY_TO_ONE)
+    @Relation(GeneratedValue.Type)
     private Owner owner;
     private PetType type = PetType.DOG;
 

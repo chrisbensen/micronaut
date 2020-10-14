@@ -16,22 +16,25 @@ https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/auton
 TODO Change this to the correct repository but this is where the source lives for now.
    ```
    git clone https://github.com/chrisbensen/micronaut
+   cd micronaut/micronaut/files/app
+   ```
+
+1. Run the schema to setup the user for the app.
+   ```
+   /opt/oracle/sqlcl/bin/sql admin/Commodore-64@mnociatp_high @/home/opc/micronaut/micronaut/files/data/createUser.sql
    ```
 
 1. Run the scheme to setup the database for the app.
    ```
-   /opt/oracle/sqlcl/bin/sql admin/Commodore-64@mnociatp_high @/home/opc/micronaut/micronaut/files/data/createSchema.sql
+   /opt/oracle/sqlcl/bin/sql mnocidemo/HandsOnLabUser1@mnociatp_high @/home/opc/micronaut/micronaut/files/data/createSchema.sql
    ```
 
 1. Build the repository.
    ```
-   cd /home/opc/micronaut/micronaut/files/app
-
    ./gradlew assemble
    ```
 
 1. Set the environment variables:
-
    ```
    export DATASOURCES_DEFAULT_PASSWORD=HandsOnLabUser1
    ```
@@ -67,6 +70,28 @@ TODO Change this to the correct repository but this is where the source lives fo
 
    [{"name":"Dino"},{"name":"Baby Puss"},{"name":"Hoppy"}]
    ```
+
+1. To make this available to the world, let's live dangerously and open a port.
+
+TODO https://stackoverflow.com/questions/54794217/opening-port-80-on-oracle-cloud-infrastructure-compute-node
+
+   1. Open a port in the security list in Instance's network. On the VM details page, click on the 'subnet' link:
+      ![](images/instanceSubnet.png)
+   1. Click "Security Lists"
+      ![](images/instanceSecurityList.png)
+   1. Click "Default Security List"
+      ![](images/instanceDefaultSecurityList.png)
+   1. Click "Add Ingress Rules"
+      ![](images/instanceAddIngressRules.png)
+   1. On the "Add Ingress Rules" dialog, add two rules:
+      ![](images/instanceAddIngressRulesDialog.png)
+   1. You will also need to open up the VM's firewall:
+      ```
+      sudo firewall-cmd --permanent --zone=public --add-port=8080/tcp
+      sudo firewall-cmd --permanent --zone=public --add-port=8080/udp
+      sudo firewall-cmd --reload
+      ```
+   1. Now from any computer use a web browser and access the url http://<YourPublicIP>:8080/pets
 
 ## Continue through the following section
 

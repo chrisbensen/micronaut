@@ -34,31 +34,31 @@
    ```
 
    Install Micronaut:
-   TODO is there a better way to install Micronaut?
    ```
-   wget https://github.com/micronaut-projects/micronaut-starter/releases/download/v2.0.0/micronaut-cli-2.0.0.zip
-
-   unzip micronaut-cli-2.0.0.zip
-
-   rm micronaut-cli-2.0.0.zip
-   echo 'export PATH=/home/opc/micronaut-cli-2.0.0/bin:$PATH' >> ~/.bashrc
-
-   source ~/.bashrc
+   curl -s https://get.sdkman.io | bash
+   source "$HOME/.sdkman/bin/sdkman-init.sh"
+   sdk install micronaut
    mn --version
    ```
+
+      **Note:** This is a small chance this doesn't work in which case you can bypass using package manager:
+      ```
+      wget https://github.com/micronaut-projects/micronaut-starter/releases/download/v2.0.0/micronaut-cli-2.0.0.zip
+
+      unzip micronaut-cli-2.0.0.zip
+
+      rm micronaut-cli-2.0.0.zip
+      echo 'export PATH=/home/opc/micronaut-cli-2.0.0/bin:$PATH' >> ~/.bashrc
+
+      source ~/.bashrc
+      mn --version
+      ```
 
    You should see something like:
    ```
    Micronaut Version: 2.0.0
    JVM Version: 11.0.8.0.2
    ```
-
-   <!-- ```
-   curl -s "https://get.sdkman.io" | bash
-   source "$HOME/.sdkman/bin/sdkman-init.sh"
-   sdk version
-   sdk install micronaut
-   ``` -->
 
 ## Continue through the following section
 
