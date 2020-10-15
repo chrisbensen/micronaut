@@ -17,7 +17,7 @@ public class Pet {
 
     @Id
     @GeneratedValue(GeneratedValue.Type.IDENTITY)
-    private int id;
+    private Long id;
     private String name;
     @Relation(Relation.Kind.MANY_TO_ONE)
     private Owner owner;
@@ -29,11 +29,11 @@ public class Pet {
         this.owner = owner;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int value) {
+    public void setId(Long value) {
         id = value;
     }
 
