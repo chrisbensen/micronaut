@@ -14,7 +14,7 @@ import java.util.UUID;
 public class Pet {
 
     @Id
-    @GeneratedValue(Type.IDENTITY)
+    @GeneratedValue(GeneratedValue.Type.IDENTITY)
     private Long id;
     private String name;
     @Relation(Relation.Kind.MANY_TO_ONE)
