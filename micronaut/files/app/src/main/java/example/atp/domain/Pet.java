@@ -33,10 +33,10 @@ public class Pet {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int value) {
+        id = value;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -45,15 +45,11 @@ public class Pet {
         return owner;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public PetType getType() {
         return type;
     }
 
-    public void setType(PetType type) {
-        this.type = type;
+    public void setType(PetType value) {
+        type = value;
     }
 }

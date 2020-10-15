@@ -24,8 +24,8 @@ public class Owner {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int value) {
+        id = value;
     }
 
     public String getName() {
@@ -36,7 +36,7 @@ public class Owner {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setAge(int value) {
+        age = value;
     }
 }
