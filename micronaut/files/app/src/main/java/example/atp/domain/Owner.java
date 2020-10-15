@@ -11,7 +11,7 @@ public class Owner {
 
     @Id
     @GeneratedValue(GeneratedValue.Type.IDENTITY)
-    private Long id;
+    private int id;
     private String name;
     private int age;
 
@@ -20,19 +20,23 @@ public class Owner {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public int getId() {
+        return id;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public Long getId() {
-        return id;
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }

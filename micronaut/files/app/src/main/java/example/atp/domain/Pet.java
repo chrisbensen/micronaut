@@ -13,6 +13,8 @@ import java.util.UUID;
 @MappedEntity
 public class Pet {
 
+    public enum PetType {DOG, CAT}
+
     @Id
     @GeneratedValue(GeneratedValue.Type.IDENTITY)
     private int id;
@@ -27,16 +29,24 @@ public class Pet {
         this.owner = owner;
     }
 
-    public Owner getOwner() {
-        return owner;
+    public int getId() {
+        return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getName() {
         return name;
     }
 
-    public int getId() {
-        return id;
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public PetType getType() {
@@ -45,10 +55,5 @@ public class Pet {
 
     public void setType(PetType type) {
         this.type = type;
-    }
-
-    public enum PetType {
-        DOG,
-        CAT
     }
 }
