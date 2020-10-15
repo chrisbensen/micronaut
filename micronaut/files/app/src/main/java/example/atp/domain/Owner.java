@@ -9,7 +9,7 @@ import io.micronaut.data.annotation.MappedEntity;
 public class Owner {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(GeneratedValue.Type.IDENTITY)
     private Long id;
     private String name;
     private int age;
@@ -33,9 +33,5 @@ public class Owner {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }
