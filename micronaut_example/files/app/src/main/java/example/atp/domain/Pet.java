@@ -1,5 +1,8 @@
 package example.atp.domain;
 
+import javax.annotation.Nullable;
+import java.util.UUID;
+
 import io.micronaut.core.annotation.Creator;
 import io.micronaut.data.annotation.AutoPopulated;
 import io.micronaut.data.annotation.Id;
@@ -7,8 +10,6 @@ import io.micronaut.data.annotation.MappedEntity;
 import io.micronaut.data.annotation.Relation;
 import io.micronaut.data.annotation.GeneratedValue;
 
-import javax.annotation.Nullable;
-import java.util.UUID;
 
 @MappedEntity
 public class Pet {

@@ -5,12 +5,14 @@ import java.util.Optional;
 
 import javax.validation.constraints.NotBlank;
 
-import example.atp.domain.Owner;
-import example.atp.repositories.OwnerRepository;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.scheduling.TaskExecutors;
 import io.micronaut.scheduling.annotation.ExecuteOn;
+
+import example.atp.domain.Owner;
+import example.atp.repositories.OwnerRepository;
+
 
 @Controller("/owners")
 @ExecuteOn(TaskExecutors.IO)

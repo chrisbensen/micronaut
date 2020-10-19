@@ -3,11 +3,13 @@ package example.atp.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Get;
+
 import example.atp.domain.NameDTO;
 import example.atp.domain.Pet;
 import example.atp.repositories.PetRepository;
-import io.micronaut.http.annotation.Controller;
-import io.micronaut.http.annotation.Get;
+
 
 @Controller("/pets")
 class PetController {

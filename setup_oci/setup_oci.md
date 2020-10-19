@@ -30,12 +30,17 @@ lab runs in the cloud so nothing needs to be installed on your local machine.
 TODO If any of these change search the entire lab and change them.
 TODO Change the names to better names before publishing the lab.
 
-**mnociatp** is the name of the database.
-**ATP Password** is **Commodore-64**
-**mnocidemo** is the name of the user created for the database.
-**mnocidemo username password** is **HandsOnLabUser1**
-**Wallet Password** is **Pw4ZipFile**
-**mnocidemo** is the name of the VM Instance
+To make this lab easy below are a list of the variables and passwords that will be used.
+
+* **mnociatp** is the name of the database
+* **ATP Password** is **Commodore-64**
+* **mnocidemo** is the name of the user created for the database
+* **mnocidemo username password** is **HandsOnLabUser1**
+* **Wallet Password** is **Pw4ZipFile**
+* **mnocidemo** is the name of the VM Instance
+* **DB_OCID** is the OCID of the ATP Database
+* **COMPUTE_IP** is the public IP address of your computer instance
+* **TNS_ADMIN** is ```/opt/oracle/wallet/```
 
 ## Part 1 - Create an Oracle Always-Free Cloud Account
 
@@ -106,11 +111,11 @@ You will need a database to complete the exercises.  An Oracle Autonomous Databa
 
 1. Generate a new RSA key pair.
    ```
-   ssh-keygen -t rsa -N "" -b 2048 -C "cloud_shell" -f ~/.ssh/id_rsa
+   ssh-keygen -t rsa -N "" -b 2048 -C "cloud_shell" -f ~/.ssh/cloud_shell_id_rsa
    ```
 1. Display the public key and copy it.
    ```
-   cat ~/.ssh/id_rsa.pub
+   cat ~/.ssh/cloud_shell_id_rsa.pub
    ```
 
 ## Create a Compute Instance for Development
@@ -131,11 +136,11 @@ An Oracle Compute instance is a Cloud VM that you will use to install and run al
 1. You may want to access this VM instance from your local Terminal, press the “+ Another Key”
    1. Generate a new RSA key pair.
       ```
-      ssh-keygen -t rsa -N "" -b 2048 -C "local" -f ~/.ssh/id_rsa
+      ssh-keygen -t rsa -N "" -b 2048 -C "local" -f ~/.ssh/local_id_rsa
       ```
    1. Display the public key and copy it.
       ```
-      cat ~/.ssh/id_rsa.pub
+      cat ~/.ssh/local_id_rsa.pub
       ```
    1. In the **Create Compute form**, paste the public key in the SSH KEYS box.
       ![](images/computeForm2Create.png)
@@ -179,6 +184,7 @@ Keep this IP address handy, it will be used throughout the lab and referred to a
    sudo unzip /opt/oracle/wallet/Wallet_micronaut.zip -d /opt/oracle/wallet/
 
    echo 'export TNS_ADMIN=/opt/oracle/wallet/' >> ~/.bashrc
+   echo 'export DATASOURCES_DEFAULT_PASSWORD=HandsOnLabUser1' >> ~/.bashrc
 
    source ~/.bashrc
    ```

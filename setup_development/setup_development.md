@@ -1,5 +1,24 @@
 # Local Development with Micronaut + Micronaut Data + Graal
 
+## Introduction
+
+In this lab you will take a fresh OCI compute instance and set it up for development for an application that uses Micronaut, ATP and GraalVM.
+
+Estimated Lab Time: &lt;10&gt; minutes
+
+Objectives
+
+In this lab you will:
+
+   * SSH into a remote VM
+   * Install git, GraalVM and Micronaut
+
+Prerequisites
+
+   * An Oracle Cloud account, Free Trial, LiveLabs or a Paid account
+   * An OCI compute instance setup with RSA keys installed
+   * The compute instance has the ATP wallet setup and installed
+
 ## Part 1 - Cloning the code for this lab
 
 1. Use SSH to access your Development Compute Instance.
@@ -25,9 +44,8 @@
    java -version
    ```
 
-   You should see something like:
+   Make sure the version number of the java command that is on the path is the one that was installed:
    ```
-   [opc@graal ~]$ java --version
    java 11.0.8.0.2 2020-07-09 LTS
    Java(TM) SE Runtime Environment GraalVM EE 20.2.0 (build 11.0.8.0.2+1-LTS-jvmci-20.2-b03)
    Java HotSpot(TM) 64-Bit Server VM GraalVM EE 20.2.0 (build 11.0.8.0.2+1-LTS-jvmci-20.2-b03, mixed mode, sharing)
@@ -41,7 +59,7 @@
    mn --version
    ```
 
-      **Note:** This is a small chance this doesn't work in which case you can bypass using package manager:
+      **Note:** This is a small chance this doesn't work in which case you can bypass using sdk manager:
       ```
       wget https://github.com/micronaut-projects/micronaut-starter/releases/download/v2.0.0/micronaut-cli-2.0.0.zip
 
@@ -54,7 +72,7 @@
       mn --version
       ```
 
-   You should see something like:
+   Make sure the version number of the mn command that is on the path is the one that was installed:
    ```
    Micronaut Version: 2.0.0
    JVM Version: 11.0.8.0.2
@@ -62,7 +80,7 @@
 
 ## Continue through the following section
 
-1. Micronaut [Micronaut](micronaut.md)
+1. Introduction to Micronaut Data [Introduction to Micronaut Data](micronaut_example.md)
 
 ## Want to Learn More?
 
