@@ -57,7 +57,7 @@ TODO Fix this
 
 ## Continue through the following section
 
-1. native-image [Native Image](native-image.md)
+1. Cleanup [Cleanup](cleanup.md)
 
 ## Want to Learn More?
 

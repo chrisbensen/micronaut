@@ -74,7 +74,7 @@ Congradulations! You have built a Micronaut application. Continue to the next la
 
 ## Continue through the following section
 
-1. About Micronaut [About Micronaut](about_micronaut.md)
+1. Micronaut Explained [Micronaut Explained](micronaut_exlained.md)
 
 ## Want to Learn More?
 
