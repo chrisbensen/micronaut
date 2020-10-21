@@ -1,29 +1,24 @@
-# Setup
+# Setup OCI
 
+## Introduction
 
-# Micronaut + Micronaut Data + Graal
+In this lab you will take a fresh OCI compute instance and set it up for development for an application that uses Micronaut, ATP and GraalVM.
 
-## Before You Begin
+Estimated Lab Time: 15 minutes
 
-This 2-hour lab walks you through the steps to use Micronaut, Micronaut Data
-and GraalVM native image to connected to an Oracle Database. Everything in this
-lab runs in the cloud so nothing needs to be installed on your local machine.
+Objectives
 
-1. Create an Oracle Cloud account
-1. Create an Autonomous Transaction Processing (ATP) Database
-1. Create an Oracle Compute instance and setup/configure
-1. Build an app with Micronaut, Micronaut Data and GraalVM
-1. Run your app in the cloud
+In this lab you will:
 
-### What Do You Need?
+   * Create an ATP database instance
+   * Create a Compute Instance
+   * Setup the Compute Instance to have database access
 
-* Free Tier OCI account with Cloud Credits **Note** You can slightly adjust the steps if you just have a Free Tier, but some things may not work and other things will take longer.
-* Internet Browser
-* [GitHub](https://github.com/) Account  
-   If you do not already have a GitHub account, create one now
-#* [Micronaut](https://micronaut.io/download.html)
-#* [GraalVM](https://github.com/graalvm/graalvm-ce-builds/releases/tag/vm-20.1.0)
-#* [VS Code](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjijsO-we7qAhVjMX0KHdJTCgYQFjAAegQIBRAB&url=https%3A%2F%2Fcode.visualstudio.com%2Fdownload&usg=AOvVaw11fc5fOXYIyxQh75jYLjXg) or [IntelliJ](https://www.jetbrains.com/idea/download/#section=mac)
+Prerequisites
+
+   * [Created a Free Tier account](oci_free_tier/oci_free_tier.md)
+   * An Oracle Cloud account, Free Trial, LiveLabs or a Paid account
+   * Web Browser
 
 ## Variables and Passwords
 
@@ -42,18 +37,7 @@ To make this lab easy below are a list of the variables and passwords that will 
 * **COMPUTE_IP** is the public IP address of your computer instance
 * **TNS_ADMIN** is ```/opt/oracle/wallet/```
 
-## Part 1 - Create an Oracle Always-Free Cloud Account
-
-1. Go to https://www.oracle.com/cloud/free/
-2. Click "Start for free"
-3. Populate the forms and create an account.
-
-   **Note** Do not create your home region in "US West (San Jose)"
-
-4. Once your account is created, [log in](https://www.oracle.com/cloud/sign-in.html) and go to the dashboard.  
-   ![](images/cloudDashboard.png)
-
-## Part 2 - Create a Compartments
+## Create a Compartment
 
 A [Compartment](https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm) is useful when you want to organize and isolate your cloud resources. Create a compartment for the objects used in this lab.
 
@@ -68,23 +52,22 @@ A [Compartment](https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managi
    ![](images/compartmentForm.png)
 1. Click the "Oracle Cloud" logo to return to the dashboard.
 
-## Part 3 - Create an ATP instance
+## Create an ATP instance
 
 You will need a database to complete the exercises.  An Oracle Autonomous Database handles a lot of the background admin tasks for you so you can focus on your project.
 
 1. Click "Create an ATP database" in the Autonomous Transaction Processing box.  
    ![](images/cloudDashboard.png)
 1. Choose your new compartment.
-1. Enter `mnociatp` in Display name
-1. Enter  `mnociatp` in Database name
-1. Make sure "Transaction Processing" is selected.
-1. Make sure "Shared Infrastructure" is selected.  
+1. Enter `mnociatp` in the Display name field
+1. Enter  `mnociatp` in the Database name field
+1. Select "Transaction Processing"
+1. Select "Shared Infrastructure"
    ![](images/createATPForm1.png)
 1. Scroll down to "Create administrator credentials".  Enter and confirm the ADMIN password. Use **Commodore-64**
-   **Note:** The Admin account is the top level user for your new database. Create a strong password and keep it secure.
+   **Note:** The Admin account is the top level user for your new database. Generally good practice is to create a strong password and keep it secure.
 1. Scroll to the bottom and click "Create Autonomous Database".  
    ![](images/createATPForm2.png)  
-   You will receive an email when your new ATP Database instance has been provisioned.
 1. Locate your new database's OCID and click Copy.
    ![](images/createATPGetOcid.png)
 1. While the database is provisioned click the Cloud Shell icon. This will open a preconfigured VM that you will use to access and setup your project. Cloud Shell has the OCI command line tools already configured. You can install these tools locally but this is an easy way to do it.
@@ -99,7 +82,7 @@ You will need a database to complete the exercises.  An Oracle Autonomous Databa
 
    Once your ATP Database status is Available (the yellow box turns green) you can download the wallet inside the Cloud Shell using the pre-configured [OCI-CLI](https://docs.cloud.oracle.com/en-us/iaas/Content/API/Concepts/cliconcepts.htm).
 
-   You should change the password value in this command to something more secure.
+      **Note:** Generally good practice is to create a strong password and keep it secure.
 
       **Note:** This password is for the .zip file, not your database.
 
@@ -160,7 +143,7 @@ Keep this IP address handy, it will be used throughout the lab and referred to a
 1. In your **Cloud Shell**  
    Use SCP to upload the wallet .zip file (downloaded earlier) to new Compute instance.
    ```
-   scp Wallet_micronaut.zip opc@${COMPUTE_IP}:/home/opc/
+   scp -i ~/.ssh/cloud_shell_id_rsa Wallet_micronaut.zip opc@${COMPUTE_IP}:/home/opc/
    ```
    ![](images/computeSaveWallet.png)
 
@@ -172,7 +155,7 @@ Keep this IP address handy, it will be used throughout the lab and referred to a
 1. Use SSH to access your Compute Instance.
    You have a choice connect to your compute instance from Cloud Shell or from your local terminal.
    ```
-   ssh opc@${COMPUTE_IP}
+   ssh -i ~/.ssh/cloud_shell_id_rsa opc@${COMPUTE_IP}
    ```
 
 1. Setup the Database Wallet
@@ -210,7 +193,7 @@ You now have a database and a VM that is setup with all the tools needed and cre
 
 ## Continue through the following section
 
-1. Setup Development [Setup Development](setup_development.md)
+1. [Setup Development](setup_development/setup_development.md)
 
 ## Want to Learn More?
 

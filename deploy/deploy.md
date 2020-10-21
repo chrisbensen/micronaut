@@ -4,7 +4,7 @@
 
 In this lab you will open up some ports on a compute instance to make a web server accessible from anywhere in the world and you will deploy a Micronaut + GraalVM application to that VM.
 
-Estimated Lab Time: &lt;n&gt; minutes
+Estimated Lab Time: 20 minutes
 
 ## Deploy Micronaut Application to OCI
 

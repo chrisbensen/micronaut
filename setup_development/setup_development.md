@@ -1,10 +1,10 @@
-# Local Development with Micronaut + Micronaut Data + Graal
+# Setup Development for Micronaut and GraalVM
 
 ## Introduction
 
 In this lab you will take a fresh OCI compute instance and set it up for development for an application that uses Micronaut, ATP and GraalVM.
 
-Estimated Lab Time: &lt;10&gt; minutes
+Estimated Lab Time: 10 minutes
 
 Objectives
 
@@ -15,19 +15,19 @@ In this lab you will:
 
 Prerequisites
 
-   * An Oracle Cloud account, Free Trial, LiveLabs or a Paid account
+   * Followed the [Setup OCI](setup_oci/setup_oci.md) lab
    * An OCI compute instance setup with RSA keys installed
    * The compute instance has the ATP wallet setup and installed
 
-## Part 1 - Cloning the code for this lab
+## Setup Development Machine
 
 1. Use SSH to access your Development Compute Instance.
    You have a choice: connect to your compute instance from Cloud Shell or from your local terminal.
    ```
-   ssh opc@${COMPUTE_IP}
+   ssh -i ~/.ssh/local_id_rsa opc@${COMPUTE_IP}
    ```
 
-1. Now we need to setup the Compute Instance by installing the software needed to run this lab.
+1. Setup the Compute Instance by installing the software needed to run this lab.
 
    Install Git:
    ```
@@ -78,7 +78,7 @@ Prerequisites
    JVM Version: 11.0.8.0.2
    ```
 
-1.
+1. TODO Setup VNC
 
    https://docs.oracle.com/en/operating-systems/oracle-linux/7/network/ol7-vnc.html#ol7-vnc-about
 
@@ -126,7 +126,7 @@ Prerequisites
 
 ## Continue through the following section
 
-1. Introduction to Micronaut Data [Introduction to Micronaut Data](micronaut_example.md)
+1. [Micronaut Example](micronaut_example/micronaut_example.md)
 
 ## Want to Learn More?
 

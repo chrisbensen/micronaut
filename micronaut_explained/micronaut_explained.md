@@ -4,6 +4,8 @@
 
 In the previous lab we built and ran the Micronaut application. This Lab will walk you through and explain how each part works and what is going on.
 
+Estimated Lab Time: 20 minutes
+
 ## Each file in the project explained
 
 In this step we will go over each file and it's significants.

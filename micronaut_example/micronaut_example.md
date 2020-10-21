@@ -19,7 +19,7 @@ In this lab you will:
 
 Prerequisites
 
-   * An Oracle Cloud account, Free Trial, LiveLabs or a Paid account
+   * Followed the [Setup Development](setup_development/setup_development.md) lab
    * Setup an ATP and Compute Instance
    * DATASOURCES_DEFAULT_PASSWORD environment variable set to the DB password
    * TNS_ADMIN environment variable set to the wallet
