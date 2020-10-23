@@ -173,7 +173,7 @@ Keep this IP address handy, it will be used throughout the lab and referred to a
    source ~/.bashrc
    ```
 
-   Newer versions of Oracles ojdbc driver make it much easier to access a database using the extra wallet security. To enable these features, edit the wallet/ojdbc.properties file.
+   Newer versions of Oracles ojdbc driver make it much easier to access a database using the extra wallet security. To enable these features, edit the `/opt/oracle/wallet/ojdbc.properties` file.
 
    ```
    sudo sed -i -e 's|oracle.net.wallet_location=|'"# oracle.net.wallet_location="'|' /opt/oracle/wallet/ojdbc.properties
@@ -181,13 +181,17 @@ Keep this IP address handy, it will be used throughout the lab and referred to a
    sudo sed -i -e 's|<password_from_console>|'"Pw4ZipFile"'|' /opt/oracle/wallet/ojdbc.properties
    ```
 
-1. Setup SQLcl
-
+1. Setup SQLcl:
    ```
    sudo yum install -y https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
    sudo yum install -y mysql
    sudo yum install -y sqlcl
    /opt/oracle/sqlcl/bin/sql -v
+   ```
+
+   This will print out the version number of sqlcl:
+   ```
+   SQLcl: Release 20.2.0.0 Production Build: 20.2.0.167.1058
    ```
 
 You now have a database and a VM that is setup with all the tools needed and credentials to access the database via a secure wallet.
