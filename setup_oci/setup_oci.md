@@ -105,15 +105,16 @@ You will need a database to complete the exercises.  An Oracle Autonomous Databa
 
 An Oracle Compute instance is a Cloud VM that you will use to install and run all of the software for the lab. This step will create a compute instance for development so nothing needs to be installed on your local machine and configuration is the same every time this lab is run. All the steps in this lab could be done locally with minor changes depending on platform.
 
-1. Click "Create a VM instance" in the Compute box. In this lab the Compute Instance will be accessed from the Cloud Shell and a local Terminal via SSH.
+1. Click "Create a VM instance" in the Compute box. In this lab the Compute Instance will be accessed from the Cloud Shell and a local Terminal via SSH
    ![](images/cloudDashboard.png)
-1. The default Free Tier machine is a VM.Standard.E2.1.Micro. We are going to build a development machine and you have free credits so let's get a machine that will run fast.
-   1. Select "Shape"
-   1. Select "Change"
-   1. Select 2 OCPUS and 32GB of memory
-   1. Click "Select Shape"
+1. The default Free Tier machine is a VM.Standard.E2.1.Micro. We are going to build a development machine and you have free credits so let's get a machine that will run fast
 1. Populate the name with **mnocidemo**
    ![](images/computeForm1Create.png)
+1. In the "Configure placement and hardware" section click the "Edit" link
+   1. Leave the default Image set to Oracle Linux 7.8
+   1. Select "Change Shape"
+      1. Select "Specialty and Legacy"
+      1. If not choose "VM.Standard.E2.2", otherwise if you have Free Tier choose "VM.Standard.E2.Micro", but note that things will be slow
 1. Scroll down the the "Add SSH keys" section.
 1. Select "Paste SSH keys" and paste in the public SSH key created in the cloud shell earlier.
 1. You may want to access this VM instance from your local Terminal, press the “+ Another Key”

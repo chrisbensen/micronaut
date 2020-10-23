@@ -128,6 +128,10 @@ Prerequisites
 
 1. [Micronaut Example](micronaut_example/micronaut_example.md)
 
+or do it in steps:
+
+1. [Micronaut Example Part 1](micronaut_example/micronaut_example_part1.md)
+
 ## Want to Learn More?
 
 * [Oracle Cloud](http://www.oracle.com/cloud/free)
