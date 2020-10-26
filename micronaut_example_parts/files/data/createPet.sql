@@ -1,0 +1,14 @@
+CREATE TABLE PET (ID NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY NOT NULL,
+                  OWNER_ID NUMBER(19) NOT NULL,
+                  NAME VARCHAR(255) NOT NULL,
+                  TYPE VARCHAR(255) NOT NULL)
+/
+
+ALTER TABLE PET ADD (CONSTRAINT fk_owner
+                     FOREIGN KEY (OWNER_ID)
+                     REFERENCES OWNER (ID)
+                     ON DELETE CASCADE
+                     ENABLE VALIDATE)
+/
+
+EXIT;
