@@ -52,7 +52,6 @@ public class Application {
         Pet bp = new Pet("Baby Puss", fred);
         bp.setType(Pet.PetType.CAT);
         Pet hoppy = new Pet("Hoppy", barney);
-
         petRepository.saveAll(Arrays.asList(dino, bp, hoppy));
     }
 }
