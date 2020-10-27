@@ -12,6 +12,7 @@ import io.micronaut.runtime.Micronaut;
 import io.micronaut.runtime.event.annotation.EventListener;
 
 import example.atp.domain.Owner;
+import example.atp.domain.Pet;
 import example.atp.repositories.OwnerRepository;
 import example.atp.repositories.PetRepository;
 
@@ -46,5 +47,11 @@ public class Application {
         Owner barney = new Owner("Barney");
         barney.setAge(40);
         ownerRepository.saveAll(Arrays.asList(fred, barney));
+
+        Pet dino = new Pet("Dino", fred);
+        Pet bp = new Pet("Baby Puss", fred);
+        bp.setType(Pet.PetType.CAT);
+        Pet hoppy = new Pet("Hoppy", barney);
+        petRepository.saveAll(Arrays.asList(dino, bp, hoppy));
     }
 }

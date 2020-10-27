@@ -32,7 +32,7 @@ dependencies {
     implementation("io.micronaut.data:micronaut-data-jdbc")
     developmentOnly("io.micronaut:micronaut-runtime-osx:$micronautVersion")
     runtimeOnly("ch.qos.logback:logback-classic")
-	 runtimeOnly("com.oracle.database.jdbc:ojdbc8")
+	  runtimeOnly("com.oracle.database.jdbc:ojdbc8")
     runtimeOnly('com.oracle.database.security:oraclepki:19.7.0.0')
     runtimeOnly('com.oracle.database.security:osdt_cert:19.7.0.0')
     runtimeOnly('com.oracle.database.security:osdt_core:19.7.0.0')
