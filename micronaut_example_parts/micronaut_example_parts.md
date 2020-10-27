@@ -31,7 +31,7 @@ Prerequisites
 
 1. The code to this lab can be found here. There are three major steps to this lab. Each step is available as a branch.
    ```
-   TODO update
+   TODO update URL
    git clone https://github.com/chrisbensen/micronaut
    cd micronaut/micronaut_example_parts/files
    ```
