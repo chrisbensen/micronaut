@@ -50,7 +50,7 @@ Prerequisites
    ```
 
 1. Configure the Micronaut application to work with Autonomous Database open the `src/main/resources/application.yml` file and modify it. Currently the file looks like this:
-   ```
+   ```yml
    micronaut:
     application:
       name: exampleAtp
@@ -65,7 +65,7 @@ Prerequisites
    ```
 
    Modify `application.yml` to look like this:
-   ```
+   ```yml
    micronaut:
      http.services:
        pet-health:
