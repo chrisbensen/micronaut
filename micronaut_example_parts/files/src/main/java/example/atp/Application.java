@@ -36,7 +36,6 @@ public class Application {
             LOG.info("Populating data");
         }
 
-        petRepository.deleteAll();
         ownerRepository.deleteAll();
         Owner fred = new Owner("Fred");
         fred.setAge(45);
