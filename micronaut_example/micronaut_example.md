@@ -34,12 +34,12 @@ Prerequisites
 
 1. Run the SQL to setup the user in the ADB for the app:
    ```
-   /opt/oracle/sqlcl/bin/sql admin/Commodore-64@mnociatp_high @/home/opc/micronaut/micronaut/files/data/createUser.sql
+   /opt/oracle/sqlcl/bin/sql admin/Commodore-64@mnociatp_tp @/home/opc/micronaut/micronaut/files/data/createUser.sql
    ```
 
 1. Run the SQL to setup the schema in the database for the app. This will create the OWNER and PET tables:
    ```
-   /opt/oracle/sqlcl/bin/sql mnocidemo/${DATASOURCES_DEFAULT_PASSWORD}@mnociatp_high @/home/opc/micronaut/micronaut/files/data/createSchema.sql
+   /opt/oracle/sqlcl/bin/sql mnocidemo/${DATASOURCES_DEFAULT_PASSWORD}@mnociatp_tp @/home/opc/micronaut/micronaut/files/data/createSchema.sql
    ```
 
 1. Build the Micronaut application.
