@@ -286,6 +286,7 @@ The `dependencies` block will now look like this:
            }
 
            ownerRepository.deleteAll();
+
            Owner fred = new Owner("Fred");
            fred.setAge(45);
            Owner barney = new Owner("Barney");
@@ -573,6 +574,7 @@ The `dependencies` block will now look like this:
            }
 
            ownerRepository.deleteAll();
+
            Owner fred = new Owner("Fred");
            fred.setAge(45);
            Owner barney = new Owner("Barney");
@@ -628,6 +630,7 @@ The `dependencies` block will now look like this:
 
            petRepository.deleteAll();
            ownerRepository.deleteAll();
+
            Owner fred = new Owner("Fred");
            fred.setAge(45);
            Owner barney = new Owner("Barney");
