@@ -34,14 +34,17 @@ Prerequisites
    TODO update
    git clone https://github.com/chrisbensen/micronaut
    cd micronaut/micronaut_example_parts/files
+   gradle wrapper
    ```
+
+   **Note:** The Micronaut wizard includes the the gradle jar and properties files. These files are not in the repository and will need to be generated with the above gradle command.
 
 ## Step 1.1 - Create the Micronaut application
 
-**Note:** This step is available as a branch:
-   ```bash
-   git checkout step1
-   ```
+   **Note:** This step is available as a branch:
+      ```bash
+      git checkout step1
+      ```
 
 1. Use the Micronaut wizard to generate an empty project:
    ```bash
@@ -324,6 +327,13 @@ The `dependencies` block will now look like this:
    EXIT;
    ```
 
+   **Note:** If for any reason you want to start over and cleanup the database:
+   ```sql
+   DROP USER mnocidemo CASCADE;
+   DROP TABLE pet;
+   DROP TABLE owner;
+   ```
+
 2. Create the OWNER table by creating the `data/createOwner.sql` file with the following contents:
    ```sql
    CREATE TABLE OWNER (ID NUMBER(19) GENERATED ALWAYS AS IDENTITY PRIMARY KEY NOT NULL,
@@ -336,12 +346,12 @@ The `dependencies` block will now look like this:
 
 ## Step 1.2 - Setup the database and build the application
 
-1. Run this SQL to setup the user in the ADB for the app:
+1. Run this SQL to setup the user in the ADB for the app. It will be run from the admin account:
    ```bash
    /opt/oracle/sqlcl/bin/sql admin/Commodore-64@mnociatp_tp @data/createUser.sql
    ```
 
-1. Run this SQL to setup the schema in the database for the app. This will create the OWNER table:
+1. Run this SQL to setup the schema in the database for the app. This will create the OWNER table under the mnocidemo account crated above:
    ```bash
    /opt/oracle/sqlcl/bin/sql mnocidemo/${DATASOURCES_DEFAULT_PASSWORD}@mnociatp_tp @data/createOwner.sql
    ```
@@ -353,7 +363,7 @@ The `dependencies` block will now look like this:
 
 1. Run the Micronaut application.
    ```bash
-   java -jar java -jar build/libs/example-atp-0.1-all.jar
+   java -jar build/libs/example-atp-0.1-all.jar
    ```
 
    The output will be something like this:

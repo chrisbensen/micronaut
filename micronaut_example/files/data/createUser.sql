@@ -1,4 +1,4 @@
-DROP USER mnocidemo;
+DROP USER mnocidemo CASCADE;
 
 CREATE USER mnocidemo IDENTIFIED BY HandsOnLabUser1;
 
