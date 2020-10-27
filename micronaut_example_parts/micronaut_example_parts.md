@@ -29,14 +29,19 @@ Prerequisites
 
 ## Build the Micronaut application
 
-1. The code to this lab can be found here. There are TODO steps and each one is available as a branch.
+1. The code to this lab can be found here. There are three major steps to this lab. Each step is available as a branch.
    ```
-   TODO update to be a branch
+   TODO update
    git clone https://github.com/chrisbensen/micronaut
-   cd micronaut/project
+   cd micronaut/micronaut_example_parts/files
    ```
 
 ## Step 1.1 - Create the Micronaut application
+
+**Note:** This step is available as a branch:
+   ```
+   git checkout step1
+   ```
 
 1. Use the Micronaut wizard to generate an empty project:
    ```
@@ -364,6 +369,11 @@ The `dependencies` block will now look like this:
 
 ## Step 2.1 - Add the PET table
 
+**Note:** This step is available as a branch:
+   ```
+   git checkout step2
+   ```
+
 1. Create the PET table by creating the `data/createPet.sql` file with the following contents:
    ```
    CREATE TABLE PET (ID NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY NOT NULL,
@@ -628,6 +638,11 @@ The `dependencies` block will now look like this:
    Press CTRL+C to terminate the Micronaut demo.
 
 ## Step 3.1 - Add the REST API
+
+**Note:** This step is available as a branch:
+   ```
+   git checkout step1
+   ```
 
 1. `src/main/java/example/atp/controllers/OwnerController.java`
 
