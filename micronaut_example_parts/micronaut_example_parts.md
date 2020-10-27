@@ -148,7 +148,7 @@ The `dependencies` block will now look like this:
 
    The @Creator annotation is used on the constructor that will be used to instantiate the mapped entity and is also used to express required columns. In this case the name column is required and immutable whilst the age column is not and can be set independently using the setAge setter.
 
-   ```
+   ```Java
    package example.atp.domain;
 
    import io.micronaut.core.annotation.Creator;
