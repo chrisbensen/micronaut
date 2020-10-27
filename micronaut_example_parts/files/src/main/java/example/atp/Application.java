@@ -42,6 +42,7 @@ public class Application {
 
         petRepository.deleteAll();
         ownerRepository.deleteAll();
+        
         Owner fred = new Owner("Fred");
         fred.setAge(45);
         Owner barney = new Owner("Barney");
