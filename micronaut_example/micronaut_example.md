@@ -27,35 +27,35 @@ Prerequisites
 ## Run Application
 
 1. Clone the repository.
-   ```
+   ```bash
    git clone https://github.com/chrisbensen/micronaut
    cd micronaut/micronaut/files/app
    ```
 
 1. Run the SQL to setup the user in the ADB for the app:
-   ```
+   ```bash
    /opt/oracle/sqlcl/bin/sql admin/Commodore-64@mnociatp_tp @/home/opc/micronaut/micronaut/files/data/createUser.sql
    ```
 
 1. Run the SQL to setup the schema in the database for the app. This will create the OWNER and PET tables:
-   ```
+   ```bash
    /opt/oracle/sqlcl/bin/sql mnocidemo/${DATASOURCES_DEFAULT_PASSWORD}@mnociatp_tp @/home/opc/micronaut/micronaut/files/data/createSchema.sql
    ```
 
 1. Build the Micronaut application.
-   ```
+   ```bash
    ./gradlew assemble
    ```
 
 1. Run the Micronaut application.
-   ```
+   ```bash
    java -jar /home/opc/micronaut/micronaut/files/app/build/libs/example-atp-0.1-all.jar
    ```
 
 1. Access the endpoint.
 
    You can now access http://localhost:8080/pets for the /pet endpoint and http://localhost:8080/owners for the /owners endpoint. For example:
-   ```
+   ```bash
    curl -i http://localhost:8080/pets
    ```
 
