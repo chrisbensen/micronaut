@@ -13,7 +13,6 @@ import io.micronaut.runtime.event.annotation.EventListener;
 
 import example.atp.domain.Owner;
 import example.atp.repositories.OwnerRepository;
-import example.atp.repositories.PetRepository;
 
 
 @Singleton
@@ -21,11 +20,9 @@ public class Application {
     private static final Logger LOG = LoggerFactory.getLogger(Application.class);
 
     private final OwnerRepository ownerRepository;
-    private final PetRepository petRepository;
 
-    Application(OwnerRepository ownerRepository, PetRepository petRepository) {
+    Application(OwnerRepository ownerRepository) {
         this.ownerRepository = ownerRepository;
-        this.petRepository = petRepository;
     }
 
     public static void main(String[] args) {
