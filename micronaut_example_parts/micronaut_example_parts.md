@@ -39,12 +39,12 @@ Prerequisites
 ## Step 1.1 - Create the Micronaut application
 
 **Note:** This step is available as a branch:
-   ```
+   ```bash
    git checkout step1
    ```
 
 1. Use the Micronaut wizard to generate an empty project:
-   ```
+   ```bash
    mn create-app example-atp --features oracle,data-jdbc
    cd example-atp
    ```
@@ -90,7 +90,7 @@ Prerequisites
    ```
 
 1. Delete the existing src/main/resources/application-test.yml file so that you can run tests against the Autonomous database instance.
-   ```
+   ```bash
    rm src/main/resources/application-test.yml
    ```
 
@@ -132,7 +132,7 @@ The `dependencies` block will now look like this:
    ```
 
 1. Make the following directories:
-   ```
+   ```bash
    mkdir src/main/java/example/atp/domain
    mkdir src/main/java/example/atp/repositories
    mkdir src/main/java/example/atp/controllers
@@ -293,7 +293,7 @@ The `dependencies` block will now look like this:
    ```
 
 1. Create the database user schema by creating the `data/createUser.sql` file with the following contents:
-   ```
+   ```sql
    CREATE USER mnocidemo IDENTIFIED BY HandsOnLabUser1;
 
    GRANT
@@ -325,7 +325,7 @@ The `dependencies` block will now look like this:
    ```
 
 2. Create the OWNER table by creating the `data/createOwner.sql` file with the following contents:
-   ```
+   ```sql
    CREATE TABLE OWNER (ID NUMBER(19) GENERATED ALWAYS AS IDENTITY PRIMARY KEY NOT NULL,
                        AGE NUMBER(10) NOT NULL,
                        NAME VARCHAR(255) NOT NULL)
@@ -337,27 +337,27 @@ The `dependencies` block will now look like this:
 ## Step 1.2 - Setup the database and build the application
 
 1. Run this SQL to setup the user in the ADB for the app:
-   ```
+   ```bash
    /opt/oracle/sqlcl/bin/sql admin/Commodore-64@mnociatp_tp @data/createUser.sql
    ```
 
 1. Run this SQL to setup the schema in the database for the app. This will create the OWNER table:
-   ```
+   ```bash
    /opt/oracle/sqlcl/bin/sql mnocidemo/${DATASOURCES_DEFAULT_PASSWORD}@mnociatp_tp @data/createOwner.sql
    ```
 
 1. Build the Micronaut application.
-   ```
+   ```bash
    ./gradlew assemble
    ```
 
 1. Run the Micronaut application.
-   ```
+   ```bash
    java -jar java -jar build/libs/example-atp-0.1-all.jar
    ```
 
    The output will be something like this:
-   ```
+   ```bash
    21:02:27.836 [main] INFO  i.m.context.env.DefaultEnvironment - Established active environments: [oraclecloud, cloud]
    21:02:29.219 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
    21:02:30.207 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
@@ -370,12 +370,12 @@ The `dependencies` block will now look like this:
 ## Step 2.1 - Add the PET table
 
 **Note:** This step is available as a branch:
-   ```
+   ```bash
    git checkout step2
    ```
 
 1. Create the PET table by creating the `data/createPet.sql` file with the following contents:
-   ```
+   ```sql
    CREATE TABLE PET (ID NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY NOT NULL,
                      OWNER_ID NUMBER(19) NOT NULL,
                      NAME VARCHAR(255) NOT NULL,
@@ -621,17 +621,17 @@ The `dependencies` block will now look like this:
 ## Step 2.2 - Setup the database and build the application
 
 1. Run this SQL to setup the schema in the database for the app. This will create the OWNER table:
-   ```
+   ```bash
    /opt/oracle/sqlcl/bin/sql mnocidemo/${DATASOURCES_DEFAULT_PASSWORD}@mnociatp_tp @data/createPet.sql
    ```
 
 1. Build the Micronaut application.
-   ```
+   ```bash
    ./gradlew assemble
    ```
 
 1. Run the Micronaut application.
-   ```
+   ```bash
    java -jar build/libs/example-atp-0.1-all.jar
    ```
 
@@ -640,7 +640,7 @@ The `dependencies` block will now look like this:
 ## Step 3.1 - Add the REST API
 
 **Note:** This step is available as a branch:
-   ```
+   ```bash
    git checkout step1
    ```
 
@@ -734,12 +734,12 @@ The `dependencies` block will now look like this:
 ## Step 3.2 - Build the application with the REST API and test
 
 1. Build the Micronaut application.
-   ```
+   ```bash
    ./gradlew assemble
    ```
 
 1. Run the Micronaut application in the background.
-   ```
+   ```bash
    java -jar build/libs/example-atp-0.1-all.jar&
    ```
 
@@ -748,7 +748,7 @@ The `dependencies` block will now look like this:
 1. Access the endpoint.
 
    You can now access http://localhost:8080/pets for the /pet endpoint and http://localhost:8080/owners for the /owners endpoint. For example:
-   ```
+   ```bash
    curl -i http://localhost:8080/pets
    ```
 
@@ -764,13 +764,13 @@ The `dependencies` block will now look like this:
    ```
 
 1. Recall the PID earlier and kill the Java process that is running in the background:
-   ```
+   ```bash
    kill PID
    ```
 
 # Step 4.1 Write Integration Tests for the Micronaut Application
    The application will already have been setup with a single test that tests the application can startup successfully (and hence will test the logic of the init method defined in the previous section). Take a look at the test `cat src/test/java/example/atp/ExampleAtpTest.java`. To run the tests run the following:
-   ```
+   ```bash
    ./gradlew test
    ```
 
