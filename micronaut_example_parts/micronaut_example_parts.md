@@ -361,7 +361,7 @@ The `dependencies` block will now look like this:
    ./gradlew assemble
    ```
 
-1. Run the Micronaut application.
+1. Run the Micronaut application and verify it worked to this point.
    ```bash
    java -jar build/libs/example-atp-0.1-all.jar
    ```
@@ -376,6 +376,22 @@ The `dependencies` block will now look like this:
    ```
 
    Press CTRL+C to terminate the Micronaut demo.
+
+   To verify the data is in the database run `/opt/oracle/sqlcl/bin/sql mnocidemo/${DATASOURCES_DEFAULT_PASSWORD}@mnociatp_tp`
+
+   Type: `select * from owner;`
+
+   The output bill be:
+   ```
+      ID    AGE      NAME
+   _____ ______ _________
+       1     45 Fred      
+       2     40 Barney    
+   ```
+
+   Then type `exit`
+
+1. The first step is complete. You have a database, one table, and a Micronaut application that writes data to that one table.
 
 ## Step 2.1 - Add the PET table
 
