@@ -73,7 +73,7 @@ Prerequisites
              url: http://localhost:8081
    datasources:
      default:
-       url: jdbc:oracle:thin:@mnociatp_high
+       url: jdbc:oracle:thin:@mnociatp_tp
        driverClassName: oracle.jdbc.OracleDriver
        username: mnocidemo
        password: ''
@@ -333,12 +333,12 @@ The `dependencies` block will now look like this:
 
 1. Run this SQL to setup the user in the ADB for the app:
    ```
-   /opt/oracle/sqlcl/bin/sql admin/Commodore-64@mnociatp_high @data/createUser.sql
+   /opt/oracle/sqlcl/bin/sql admin/Commodore-64@mnociatp_tp @data/createUser.sql
    ```
 
 1. Run this SQL to setup the schema in the database for the app. This will create the OWNER table:
    ```
-   /opt/oracle/sqlcl/bin/sql mnocidemo/${DATASOURCES_DEFAULT_PASSWORD}@mnociatp_high @data/createOwner.sql
+   /opt/oracle/sqlcl/bin/sql mnocidemo/${DATASOURCES_DEFAULT_PASSWORD}@mnociatp_tp @data/createOwner.sql
    ```
 
 1. Build the Micronaut application.
@@ -603,8 +603,8 @@ The `dependencies` block will now look like this:
            Pet bp = new Pet("Baby Puss", fred);
            bp.setType(Pet.PetType.CAT);
            Pet hoppy = new Pet("Hoppy", barney);
-
            petRepository.saveAll(Arrays.asList(dino, bp, hoppy));
+           //TODO Commit to database?
        }
    }
    ```
@@ -613,7 +613,7 @@ The `dependencies` block will now look like this:
 
 1. Run this SQL to setup the schema in the database for the app. This will create the OWNER table:
    ```
-   /opt/oracle/sqlcl/bin/sql mnocidemo/${DATASOURCES_DEFAULT_PASSWORD}@mnociatp_high @data/createPet.sql
+   /opt/oracle/sqlcl/bin/sql mnocidemo/${DATASOURCES_DEFAULT_PASSWORD}@mnociatp_tp @data/createPet.sql
    ```
 
 1. Build the Micronaut application.

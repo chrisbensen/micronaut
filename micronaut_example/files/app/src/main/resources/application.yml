@@ -10,7 +10,7 @@ micronaut:
         url: http://localhost:8081
 datasources:
   default:
-    url: jdbc:oracle:thin:@mnociatp_high
+    url: jdbc:oracle:thin:@mnociatp_tp
     driverClassName: oracle.jdbc.OracleDriver
     username: mnocidemo
     password: ''
