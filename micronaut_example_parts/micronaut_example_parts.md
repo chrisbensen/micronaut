@@ -205,7 +205,7 @@ The `dependencies` block will now look like this:
 
    For more information on query methods and the types of queries you can define see the [documentation for query methods](https://micronaut-projects.github.io/micronaut-data/latest/guide/index.html#querying) in the Micronaut Data documentation.
 
-   ```
+   ```Java
    package example.atp.repositories;
 
    import java.util.List;
@@ -229,7 +229,7 @@ The `dependencies` block will now look like this:
    ```
 
 1. The application `src/main/java/example/atp/Application.java` currently looks like this:
-   ```
+   ```Java
    package example.atp;
 
    import io.micronaut.runtime.Micronaut;
@@ -243,7 +243,7 @@ The `dependencies` block will now look like this:
    ```
    Modify `Application.java` to look like this to populate some data for the OWNER table on startup. To do this you can use [Micronaut application events](https://docs.micronaut.io/latest/guide/index.html#contextEvents).
 
-   ```
+   ```Java
    package example.atp;
 
    import javax.inject.Singleton;
@@ -397,7 +397,7 @@ The `dependencies` block will now look like this:
    Note that the Pet class uses an automatically populated identity column as the primary key to demonstrate differing approaches to ID generation.
 
    A relationship between the Pet class and the Owner class is also defined using the @Relation(Relation.Kind.MANY_TO_ONE) annotation, indicating this is a many-to-one relationship.
-   ```
+   ```Java
    package example.atp.domain;
 
    import javax.annotation.Nullable;
@@ -458,8 +458,7 @@ The `dependencies` block will now look like this:
 
 1. `src/main/java/example/atp/domain/NameDTO.java`
    The second repository for the Pet table uses a data transfer object (DTO) to perform an optimized query. A DTO is a simple POJO that allows you to select only the columns a particular query needs, thus producing a more optimized query.
-
-   ```
+   ```Java
    package example.atp.domain;
 
    import io.micronaut.core.annotation.Introspected;
@@ -481,7 +480,7 @@ The `dependencies` block will now look like this:
 
 1. `src/main/java/example/atp/repositories/PetRepository.java`
    Take note of the list method that returns the DTO. This method will again be implemented for you at compilation time, but this time instead of retrieving all the columns of the Pet column it will only retrieve the name column and any other columns you may define.
-   ```
+   ```Java
    package example.atp.repositories;
 
    import java.util.List;
@@ -508,7 +507,7 @@ The `dependencies` block will now look like this:
    ```
 
 1. The application `src/main/java/example/atp/Application.java` currently looks like this:
-   ```
+   ```Java
    package example.atp;
 
    import javax.inject.Singleton;
@@ -556,9 +555,9 @@ The `dependencies` block will now look like this:
        }
    }
    ```
-   Modify `Application.java` to look like this to populate some data for the OWNER table on startup. To do this you can use [Micronaut application events](https://docs.micronaut.io/latest/guide/index.html#contextEvents).
 
-   ```
+   Modify `Application.java` to look like this to populate some data for the OWNER table on startup. To do this you can use [Micronaut application events](https://docs.micronaut.io/latest/guide/index.html#contextEvents).
+   ```Java
    package example.atp;
 
    import javax.inject.Singleton;
@@ -654,7 +653,7 @@ The `dependencies` block will now look like this:
 
    / - The root endpoint lists all the owners
    /{name} - The second endpoint uses a [URI template](https://docs.micronaut.io/latest/guide/index.html#routing) to allow looking up an owner by name. The value of the URI variable {name} is provided as a parameter to the byName method.
-   ```
+   ```Java
    package example.atp.controllers;
 
    import java.util.List;
@@ -696,8 +695,7 @@ The `dependencies` block will now look like this:
 1. `src/main/java/example/atp/controllers/PetController.java`
 
    PetController is a second REST endpoint in this example and where PetRepository is injected to expose a list of pets and pets by name.
-
-   ```
+   ```Java
    package example.atp.controllers;
 
    import java.util.List;
