@@ -30,7 +30,7 @@ Prerequisites
 ## Build the Micronaut application
 
 1. The code to this lab can be found here. There are three major steps to this lab. Each step is available as a branch.
-   ```
+   ```bash
    TODO update URL
    git clone https://github.com/chrisbensen/micronaut
    cd micronaut/micronaut_example_parts/files
@@ -48,23 +48,21 @@ Prerequisites
 
 1. Use the Micronaut wizard to generate an empty project:
    ```bash
-   mn create-app example-atp --features oracle,data-jdbc
-   cd example-atp
+   mn create-app example-atp --features oracle,data-jdbc && cd example-atp
    ```
 
-1. Configure the Micronaut application to work with Autonomous Database open the `src/main/resources/application.yml` file and modify it. Currently the file looks like this:
-   ```yml
-   micronaut:
-    application:
-      name: exampleAtp
-   datasources:
-     default:
-       url: jdbc:oracle:thin:@localhost:1521/xe
-       driverClassName: oracle.jdbc.OracleDriver
-       username: system
-       password: oracle
-       schema-generate: CREATE_DROP
-       dialect: ORACLE
+1. Make the following directories:
+   ```bash
+   mkdir src/main/java/example/atp/domain
+   mkdir src/main/java/example/atp/repositories
+   mkdir src/main/java/example/atp/controllers
+   mkdir data
+   ```
+
+1. Configure the Micronaut application to work with Autonomous Database. First delete `application.yml`, then edit it:
+   ```bash
+   rm src/main/resources/application.yml
+   nano src/main/resources/application.yml
    ```
 
    Modify `application.yml` to look like this:
@@ -134,22 +132,64 @@ The `dependencies` block will now look like this:
    }
    ```
 
-1. Make the following directories:
-   ```bash
-   mkdir src/main/java/example/atp/domain
-   mkdir src/main/java/example/atp/repositories
-   mkdir src/main/java/example/atp/controllers
-   mkdir data
+1. Create the database user schema by creating the `data/createUser.sql` file with the following contents:
+   ```sql
+   CREATE USER mnocidemo IDENTIFIED BY HandsOnLabUser1;
+
+   GRANT
+   CREATE SESSION,
+   RESOURCE,
+   UNLIMITED TABLESPACE,
+   CREATE TABLE,
+   CREATE VIEW,
+   CREATE SEQUENCE,
+   CREATE PROCEDURE,
+   CREATE TYPE,
+   CREATE SYNONYM
+   TO mnocidemo;
+
+   /* for SQL Developer Web */
+   BEGIN
+    ords_admin.enable_schema(
+     p_enabled => TRUE,
+     p_schema => 'mnocidemo',
+     p_url_mapping_type => 'BASE_PATH',
+     p_url_mapping_pattern => 'mnocidemo',
+     p_auto_rest_auth => NULL
+    );
+    COMMIT;
+   END;
+   /
+
+   EXIT;
    ```
 
-1. `src/main/java/example/atp/domain/Owner.java`
-   Since there are two tables, PET and OWNER, we define entity classes that can be used to read/write data to the database tables.
+   **Note:** If for any reason you want to start over and cleanup the database:
+   ```sql
+   DROP USER mnocidemo CASCADE;
+   DROP TABLE pet;
+   DROP TABLE owner;
+   ```
+
+2. Create the OWNER table by creating the `data/createOwner.sql` file with the following contents:
+   ```sql
+   CREATE TABLE OWNER (ID NUMBER(19) GENERATED ALWAYS AS IDENTITY PRIMARY KEY NOT NULL,
+                       AGE NUMBER(10) NOT NULL,
+                       NAME VARCHAR(255) NOT NULL)
+   /
+
+   EXIT;
+   ```
+
+1. OWNER, we define entity classes that can be used to read/write data to the database tables.
 
    The @MappedEntity annotation is used to indicate that the entity is mapped to a database table. By default this will be a table using the same name as the class (in this case owner).
 
    The columns of the table are represented by each Java property. In the above case an id column will be used to represent the primary key and by using @GeneratedValue this sets up the mapping to assume the use of an identity column in Autonomous Database.
 
    The @Creator annotation is used on the constructor that will be used to instantiate the mapped entity and is also used to express required columns. In this case the name column is required and immutable whilst the age column is not and can be set independently using the setAge setter.
+
+   `nano src/main/java/example/atp/domain/Owner.java`
 
    ```Java
    package example.atp.domain;
@@ -286,6 +326,7 @@ The `dependencies` block will now look like this:
            }
 
            ownerRepository.deleteAll();
+
            Owner fred = new Owner("Fred");
            fred.setAge(45);
            Owner barney = new Owner("Barney");
@@ -361,7 +402,7 @@ The `dependencies` block will now look like this:
    ./gradlew assemble
    ```
 
-1. Run the Micronaut application.
+1. Run the Micronaut application and verify it worked to this point.
    ```bash
    java -jar build/libs/example-atp-0.1-all.jar
    ```
@@ -376,6 +417,22 @@ The `dependencies` block will now look like this:
    ```
 
    Press CTRL+C to terminate the Micronaut demo.
+
+   To verify the data is in the database run `/opt/oracle/sqlcl/bin/sql mnocidemo/${DATASOURCES_DEFAULT_PASSWORD}@mnociatp_tp`
+
+   Type: `select * from owner;`
+
+   The output bill be:
+   ```
+      ID    AGE      NAME
+   _____ ______ _________
+       1     45 Fred      
+       2     40 Barney    
+   ```
+
+   Then type `exit`
+
+1. The first step is complete. You have a database, one table, and a Micronaut application that writes data to that one table.
 
 ## Step 2.1 - Add the PET table
 
@@ -557,6 +614,7 @@ The `dependencies` block will now look like this:
            }
 
            ownerRepository.deleteAll();
+
            Owner fred = new Owner("Fred");
            fred.setAge(45);
            Owner barney = new Owner("Barney");
@@ -612,6 +670,7 @@ The `dependencies` block will now look like this:
 
            petRepository.deleteAll();
            ownerRepository.deleteAll();
+
            Owner fred = new Owner("Fred");
            fred.setAge(45);
            Owner barney = new Owner("Barney");
@@ -623,7 +682,6 @@ The `dependencies` block will now look like this:
            bp.setType(Pet.PetType.CAT);
            Pet hoppy = new Pet("Hoppy", barney);
            petRepository.saveAll(Arrays.asList(dino, bp, hoppy));
-           //TODO Commit to database?
        }
    }
    ```
@@ -748,7 +806,7 @@ The `dependencies` block will now look like this:
    ./gradlew assemble
    ```
 
-1. Run the Micronaut application in the background.
+1. Run the Micronaut application. This time we are going to run it in the background so we only have to use one terminal.
    ```bash
    java -jar build/libs/example-atp-0.1-all.jar&
    ```
