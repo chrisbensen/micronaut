@@ -65,7 +65,7 @@ Prerequisites
    nano src/main/resources/application.yml
    ```
 
-   Modify `application.yml` to look like this:
+   Add the following YML to the new `application.yml`:
    ```yml
    micronaut:
      http.services:
