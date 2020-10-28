@@ -652,9 +652,7 @@ The `dependencies` block will now look like this:
    git checkout step3
    ```
 
-1. `src/main/java/example/atp/controllers/OwnerController.java`
-
-   REST endpoints in Micronaut are easy to write and defined as [controllers](https://docs.micronaut.io/latest/guide/index.html#httpServer) using the MVC pattern. A controller class is defined with the @Controller annotation which you can use to define the root URI that the controller maps to, in this case **/owners**.
+1. REST endpoints in Micronaut are easy to write and defined as [controllers](https://docs.micronaut.io/latest/guide/index.html#httpServer) using the MVC pattern. A controller class is defined with the @Controller annotation which you can use to define the root URI that the controller maps to, in this case **/owners**.
 
    The @ExecuteOn annotation is used to tell Micronaut that the controller performs I/O communication with a database and therefore operations should [run on the I/O thread pool](https://docs.micronaut.io/latest/guide/index.html#reactiveServer).
 
@@ -662,6 +660,11 @@ The `dependencies` block will now look like this:
 
    / - The root endpoint lists all the owners
    /{name} - The second endpoint uses a [URI template](https://docs.micronaut.io/latest/guide/index.html#routing) to allow looking up an owner by name. The value of the URI variable {name} is provided as a parameter to the byName method.
+
+   Create the `OwnerController` classes:
+   `nano src/main/java/example/atp/controllers/OwnerController.java`
+
+   With the following content:
    ```Java
    package example.atp.controllers;
 
@@ -701,9 +704,12 @@ The `dependencies` block will now look like this:
    }
    ```
 
-1. `src/main/java/example/atp/controllers/PetController.java`
+1. PetController is a second REST endpoint in this example and where PetRepository is injected to expose a list of pets and pets by name.
 
-   PetController is a second REST endpoint in this example and where PetRepository is injected to expose a list of pets and pets by name.
+   Create the `PetController` classes:
+   `nano src/main/java/example/atp/controllers/PetController.java`
+
+   With the following content:
    ```Java
    package example.atp.controllers;
 
