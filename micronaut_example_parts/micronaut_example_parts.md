@@ -31,7 +31,7 @@ Prerequisites
 
 1. The code to this lab can be found here. There are three major steps to this lab. Each step is available as a branch.
    ```bash
-   TODO update
+   TODO update URL
    git clone https://github.com/chrisbensen/micronaut
    cd micronaut/micronaut_example_parts/files
    gradle wrapper
@@ -326,6 +326,7 @@ The `dependencies` block will now look like this:
            }
 
            ownerRepository.deleteAll();
+
            Owner fred = new Owner("Fred");
            fred.setAge(45);
            Owner barney = new Owner("Barney");
@@ -342,7 +343,7 @@ The `dependencies` block will now look like this:
    /opt/oracle/sqlcl/bin/sql admin/Commodore-64@mnociatp_tp @data/createUser.sql
    ```
 
-1. Run this SQL to setup the schema in the database for the app. This will create the OWNER table under the mnocidemo account crated above:
+1. Run this SQL to setup the schema in the database for the app. This will create the OWNER table under the mnocidemo account created above:
    ```bash
    /opt/oracle/sqlcl/bin/sql mnocidemo/${DATASOURCES_DEFAULT_PASSWORD}@mnociatp_tp @data/createOwner.sql
    ```
@@ -352,7 +353,7 @@ The `dependencies` block will now look like this:
    ./gradlew assemble
    ```
 
-1. Run the Micronaut application.
+1. Run the Micronaut application and verify it worked to this point.
    ```bash
    java -jar build/libs/example-atp-0.1-all.jar
    ```
@@ -367,6 +368,22 @@ The `dependencies` block will now look like this:
    ```
 
    Press CTRL+C to terminate the Micronaut demo.
+
+   To verify the data is in the database run `/opt/oracle/sqlcl/bin/sql mnocidemo/${DATASOURCES_DEFAULT_PASSWORD}@mnociatp_tp`
+
+   Type: `select * from owner;`
+
+   The output bill be:
+   ```
+      ID    AGE      NAME
+   _____ ______ _________
+       1     45 Fred      
+       2     40 Barney    
+   ```
+
+   Then type `exit`
+
+1. The first step is complete. You have a database, one table, and a Micronaut application that writes data to that one table.
 
 ## Step 2.1 - Add the PET table
 
@@ -548,6 +565,7 @@ The `dependencies` block will now look like this:
            }
 
            ownerRepository.deleteAll();
+
            Owner fred = new Owner("Fred");
            fred.setAge(45);
            Owner barney = new Owner("Barney");
@@ -603,6 +621,7 @@ The `dependencies` block will now look like this:
 
            petRepository.deleteAll();
            ownerRepository.deleteAll();
+
            Owner fred = new Owner("Fred");
            fred.setAge(45);
            Owner barney = new Owner("Barney");
