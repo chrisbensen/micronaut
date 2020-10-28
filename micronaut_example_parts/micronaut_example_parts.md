@@ -391,7 +391,7 @@ The `dependencies` block will now look like this:
 
    Type:
 
-   `select * from owner;`
+   `SELECT * FROM OWNER;`
 
    The output bill be:
    ```
@@ -431,10 +431,12 @@ The `dependencies` block will now look like this:
    ```
 
 
-1. `src/main/java/example/atp/domain/Pet.java`
-   Note that the Pet class uses an automatically populated identity column as the primary key to demonstrate differing approaches to ID generation.
+1. Create the `Pet` classes:
+   ```bash
+   nano src/main/java/example/atp/domain/Pet.java
+   ```
 
-   A relationship between the Pet class and the Owner class is also defined using the @Relation(Relation.Kind.MANY_TO_ONE) annotation, indicating this is a many-to-one relationship.
+   With the following content:
    ```Java
    package example.atp.domain;
 
@@ -494,8 +496,19 @@ The `dependencies` block will now look like this:
    }
    ```
 
-1. `src/main/java/example/atp/domain/NameDTO.java`
-   The second repository for the Pet table uses a data transfer object (DTO) to perform an optimized query. A DTO is a simple POJO that allows you to select only the columns a particular query needs, thus producing a more optimized query.
+   Note that the Pet class uses an automatically populated identity column as the primary key to demonstrate differing approaches to ID generation.
+
+   A relationship between the Pet class and the Owner class is also defined using the @Relation(Relation.Kind.MANY_TO_ONE) annotation, indicating this is a many-to-one relationship.
+
+
+1. The repository for the Pet table uses a data transfer object (DTO) to perform an optimized query. A DTO is a simple POJO that allows you to select only the columns a particular query needs, thus producing a more optimized query.
+
+   Create the `NameDTO` classes:
+   ```bash
+   nano src/main/java/example/atp/domain/NameDTO.java
+   ```
+
+   With the following content:
    ```Java
    package example.atp.domain;
 
