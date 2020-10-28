@@ -183,7 +183,7 @@ The `dependencies` block will now look like this:
 
 1. Micronaut Data provides easy access to database tables. For the OWNER table created above, you define an entity classes that will read/write data to/from the database tables. Create the `Owner` class:
 
-   ``bashr
+   ```bash
    nano src/main/java/example/atp/domain/Owner.java
    ```
 
