@@ -31,7 +31,7 @@ Prerequisites
 
 1. The code to this lab can be found here. There are three major steps to this lab. Each step is available as a branch.
    ```bash
-   TODO update
+   TODO update URL
    git clone https://github.com/chrisbensen/micronaut
    cd micronaut/micronaut_example_parts/files
    gradle wrapper
@@ -352,7 +352,7 @@ The `dependencies` block will now look like this:
    /opt/oracle/sqlcl/bin/sql admin/Commodore-64@mnociatp_tp @data/createUser.sql
    ```
 
-1. Run this SQL to setup the schema in the database for the app. This will create the OWNER table under the mnocidemo account crated above:
+1. Run this SQL to setup the schema in the database for the app. This will create the OWNER table under the mnocidemo account created above:
    ```bash
    /opt/oracle/sqlcl/bin/sql mnocidemo/${DATASOURCES_DEFAULT_PASSWORD}@mnociatp_tp @data/createOwner.sql
    ```
