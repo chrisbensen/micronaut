@@ -300,7 +300,7 @@ The `dependencies` block will now look like this:
       rm src/main/java/example/atp/Application.java
       nano src/main/java/example/atp/Application.java
       ```
-      
+
    With the following content:
    ```Java
    package example.atp;
@@ -385,9 +385,13 @@ The `dependencies` block will now look like this:
 
    Press CTRL+C to terminate the Micronaut demo.
 
-   To verify the data is in the database run `/opt/oracle/sqlcl/bin/sql mnocidemo/${DATASOURCES_DEFAULT_PASSWORD}@mnociatp_tp`
+   To verify the data is in the database run
 
-   Type: `select * from owner;`
+   `/opt/oracle/sqlcl/bin/sql mnocidemo/${DATASOURCES_DEFAULT_PASSWORD}@mnociatp_tp`
+
+   Type:
+
+   `select * from owner;`
 
    The output bill be:
    ```
