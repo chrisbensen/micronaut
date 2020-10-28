@@ -662,7 +662,9 @@ The `dependencies` block will now look like this:
    /{name} - The second endpoint uses a [URI template](https://docs.micronaut.io/latest/guide/index.html#routing) to allow looking up an owner by name. The value of the URI variable {name} is provided as a parameter to the byName method.
 
    Create the `OwnerController` classes:
-   `nano src/main/java/example/atp/controllers/OwnerController.java`
+   ```bash
+   nano src/main/java/example/atp/controllers/OwnerController.java
+   ```
 
    With the following content:
    ```Java
@@ -707,7 +709,9 @@ The `dependencies` block will now look like this:
 1. PetController is a second REST endpoint in this example and where PetRepository is injected to expose a list of pets and pets by name.
 
    Create the `PetController` classes:
-   `nano src/main/java/example/atp/controllers/PetController.java`
+   ```bash
+   nano src/main/java/example/atp/controllers/PetController.java
+   ```
 
    With the following content:
    ```Java
