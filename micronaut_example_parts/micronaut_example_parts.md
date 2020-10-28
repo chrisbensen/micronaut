@@ -529,8 +529,12 @@ The `dependencies` block will now look like this:
    }
    ```
 
-1. `src/main/java/example/atp/repositories/PetRepository.java`
-   Take note of the list method that returns the DTO. This method will again be implemented for you at compilation time, but this time instead of retrieving all the columns of the Pet column it will only retrieve the name column and any other columns you may define.
+1. Create the `PetRepository` classes:
+   ```bash
+   nano src/main/java/example/atp/repositories/PetRepository.java
+   ```
+
+   With the following content:
    ```Java
    package example.atp.repositories;
 
@@ -557,58 +561,10 @@ The `dependencies` block will now look like this:
    }
    ```
 
-1. The application `src/main/java/example/atp/Application.java` currently looks like this:
-   ```Java
-   package example.atp;
-
-   import javax.inject.Singleton;
-   import javax.transaction.Transactional;
-   import java.util.Arrays;
-
-   import org.slf4j.Logger;
-   import org.slf4j.LoggerFactory;
-
-   import io.micronaut.context.event.StartupEvent;
-   import io.micronaut.runtime.Micronaut;
-   import io.micronaut.runtime.event.annotation.EventListener;
-
-   import example.atp.domain.Owner;
-   import example.atp.repositories.OwnerRepository;
+   Take note of the list method that returns the DTO. This method will again be implemented for you at compilation time, but this time instead of retrieving all the columns of the Pet column it will only retrieve the name column and any other columns you may define.
 
 
-   @Singleton
-   public class Application {
-       private static final Logger LOG = LoggerFactory.getLogger(Application.class);
-
-       private final OwnerRepository ownerRepository;
-
-       Application(OwnerRepository ownerRepository) {
-           this.ownerRepository = ownerRepository;
-       }
-
-       public static void main(String[] args) {
-           Micronaut.run(Application.class);
-       }
-
-       @EventListener
-       @Transactional
-       void init(StartupEvent event) {
-           if (LOG.isInfoEnabled()) {
-               LOG.info("Populating data");
-           }
-
-           ownerRepository.deleteAll();
-
-           Owner fred = new Owner("Fred");
-           fred.setAge(45);
-           Owner barney = new Owner("Barney");
-           barney.setAge(40);
-           ownerRepository.saveAll(Arrays.asList(fred, barney));
-       }
-   }
-   ```
-
-   Modify `Application.java` to look like this to populate some data for the OWNER table on startup. To do this you can use [Micronaut application events](https://docs.micronaut.io/latest/guide/index.html#contextEvents).
+1. Modify `src/main/java/example/atp/Application.java` to look like the following to populate some data for the PET table on startup. To do this you can use [Micronaut application events](https://docs.micronaut.io/latest/guide/index.html#contextEvents).
    ```Java
    package example.atp;
 
