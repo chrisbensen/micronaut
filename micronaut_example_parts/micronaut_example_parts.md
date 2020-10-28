@@ -649,7 +649,7 @@ The `dependencies` block will now look like this:
 
 **Note:** This step is available as a branch:
    ```bash
-   git checkout step1
+   git checkout step3
    ```
 
 1. `src/main/java/example/atp/controllers/OwnerController.java`
