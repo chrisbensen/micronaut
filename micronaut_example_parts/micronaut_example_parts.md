@@ -59,7 +59,7 @@ Prerequisites
    mkdir data
    ```
 
-1. Configure the Micronaut application to work with Autonomous Database. First delete `application.yml`, then edit it:
+1. Configure the Micronaut application to work with Autonomous Database. First delete `application.yml`, then create a new one:
    ```bash
    rm src/main/resources/application.yml
    nano src/main/resources/application.yml
