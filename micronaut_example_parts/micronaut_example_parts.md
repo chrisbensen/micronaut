@@ -30,15 +30,18 @@ Prerequisites
 ## Build the Micronaut application
 
 1. The code to this lab can be found here. There are three major steps to this lab. Each step is available as a branch.
-   ```
+   ```bash
    TODO update URL
    git clone https://github.com/chrisbensen/micronaut
    cd micronaut/micronaut_example_parts/files
+   gradle wrapper
    ```
+
+   **Note:** The Micronaut wizard includes the the gradle jar and properties files. These files are not in the repository and will need to be generated with the above gradle command.
 
 ## Step 1.1 - Create the Micronaut application
 
-**Note:** This step is available as a branch:
+   **Note:** This step is available as a branch:
    ```bash
    git checkout step1
    ```
@@ -283,6 +286,7 @@ The `dependencies` block will now look like this:
            }
 
            ownerRepository.deleteAll();
+
            Owner fred = new Owner("Fred");
            fred.setAge(45);
            Owner barney = new Owner("Barney");
@@ -324,6 +328,13 @@ The `dependencies` block will now look like this:
    EXIT;
    ```
 
+   **Note:** If for any reason you want to start over and cleanup the database:
+   ```sql
+   DROP USER mnocidemo CASCADE;
+   DROP TABLE pet;
+   DROP TABLE owner;
+   ```
+
 2. Create the OWNER table by creating the `data/createOwner.sql` file with the following contents:
    ```sql
    CREATE TABLE OWNER (ID NUMBER(19) GENERATED ALWAYS AS IDENTITY PRIMARY KEY NOT NULL,
@@ -336,12 +347,12 @@ The `dependencies` block will now look like this:
 
 ## Step 1.2 - Setup the database and build the application
 
-1. Run this SQL to setup the user in the ADB for the app:
+1. Run this SQL to setup the user in the ADB for the app. It will be run from the admin account:
    ```bash
    /opt/oracle/sqlcl/bin/sql admin/Commodore-64@mnociatp_tp @data/createUser.sql
    ```
 
-1. Run this SQL to setup the schema in the database for the app. This will create the OWNER table:
+1. Run this SQL to setup the schema in the database for the app. This will create the OWNER table under the mnocidemo account created above:
    ```bash
    /opt/oracle/sqlcl/bin/sql mnocidemo/${DATASOURCES_DEFAULT_PASSWORD}@mnociatp_tp @data/createOwner.sql
    ```
@@ -351,9 +362,9 @@ The `dependencies` block will now look like this:
    ./gradlew assemble
    ```
 
-1. Run the Micronaut application.
+1. Run the Micronaut application and verify it worked to this point.
    ```bash
-   java -jar java -jar build/libs/example-atp-0.1-all.jar
+   java -jar build/libs/example-atp-0.1-all.jar
    ```
 
    The output will be something like this:
@@ -366,6 +377,22 @@ The `dependencies` block will now look like this:
    ```
 
    Press CTRL+C to terminate the Micronaut demo.
+
+   To verify the data is in the database run `/opt/oracle/sqlcl/bin/sql mnocidemo/${DATASOURCES_DEFAULT_PASSWORD}@mnociatp_tp`
+
+   Type: `select * from owner;`
+
+   The output bill be:
+   ```
+      ID    AGE      NAME
+   _____ ______ _________
+       1     45 Fred      
+       2     40 Barney    
+   ```
+
+   Then type `exit`
+
+1. The first step is complete. You have a database, one table, and a Micronaut application that writes data to that one table.
 
 ## Step 2.1 - Add the PET table
 
@@ -547,6 +574,7 @@ The `dependencies` block will now look like this:
            }
 
            ownerRepository.deleteAll();
+
            Owner fred = new Owner("Fred");
            fred.setAge(45);
            Owner barney = new Owner("Barney");
@@ -602,6 +630,7 @@ The `dependencies` block will now look like this:
 
            petRepository.deleteAll();
            ownerRepository.deleteAll();
+
            Owner fred = new Owner("Fred");
            fred.setAge(45);
            Owner barney = new Owner("Barney");
@@ -613,7 +642,6 @@ The `dependencies` block will now look like this:
            bp.setType(Pet.PetType.CAT);
            Pet hoppy = new Pet("Hoppy", barney);
            petRepository.saveAll(Arrays.asList(dino, bp, hoppy));
-           //TODO Commit to database?
        }
    }
    ```
