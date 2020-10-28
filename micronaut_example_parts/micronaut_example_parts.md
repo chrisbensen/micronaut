@@ -296,10 +296,10 @@ The `dependencies` block will now look like this:
    Modify `Application.java` to look like this to populate some data for the OWNER table on startup. To do this you can use [Micronaut application events](https://docs.micronaut.io/latest/guide/index.html#contextEvents).
 
       **Note:** The easiest way to do this is delete the file and recreate it:
-         ```bash
-         rm src/main/java/example/atp/Application.java
-         nano src/main/java/example/atp/Application.java
-         ```
+      ```bash
+      rm src/main/java/example/atp/Application.java
+      nano src/main/java/example/atp/Application.java
+      ```
 
    ```Java
    package example.atp;
