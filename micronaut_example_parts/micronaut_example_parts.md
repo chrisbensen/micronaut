@@ -181,16 +181,13 @@ The `dependencies` block will now look like this:
    EXIT;
    ```
 
-1. OWNER, we define entity classes that can be used to read/write data to the database tables.
+1. Micronaut Data provides easy access to database tables. For the OWNER table created above, you define an entity classes that will read/write data to/from the database tables. Create the `Owner` class:
 
-   The @MappedEntity annotation is used to indicate that the entity is mapped to a database table. By default this will be a table using the same name as the class (in this case owner).
+   ``bashr
+   nano src/main/java/example/atp/domain/Owner.java
+   ```
 
-   The columns of the table are represented by each Java property. In the above case an id column will be used to represent the primary key and by using @GeneratedValue this sets up the mapping to assume the use of an identity column in Autonomous Database.
-
-   The @Creator annotation is used on the constructor that will be used to instantiate the mapped entity and is also used to express required columns. In this case the name column is required and immutable whilst the age column is not and can be set independently using the setAge setter.
-
-   `nano src/main/java/example/atp/domain/Owner.java`
-
+   With the following content:
    ```Java
    package example.atp.domain;
 
@@ -237,17 +234,19 @@ The `dependencies` block will now look like this:
    }
    ```
 
-1. `src/main/java/example/atp/repositories/OwnerRepository.java`
-   Repository interfaces allow you to implement queries. The CrudRepository interface takes two generic argument types. The first is the type of the entity, in this case Owner, and the second is the type if the ID, a Long.
+   The @MappedEntity annotation is used to indicate that the entity is mapped to a database table. By default this will be a table using the same name as the class (in this case owner).
 
-   The CrudRepository interface defines methods that allow you to create, read, update and delete (CRUD) entities from the database with the appropriate SQL inserts, selects, updates and deletes computed for you at compilation time. For more information see the javadoc for [CrudRepository](https://micronaut-projects.github.io/micronaut-data/latest/api/io/micronaut/data/repository/CrudRepository.html).
+   The columns of the table are represented by each Java property. In the above case an id column will be used to represent the primary key and by using @GeneratedValue this sets up the mapping to assume the use of an identity column in Autonomous Database.
 
-   You can define methods within the interface that perform JDBC queries and automatically handle all the intricate details for you such as defining correct transaction semantics such as read-only transactions for queries, executing the query and mapping the result set to the Owner entity class you defined earlier.
+   The @Creator annotation is used on the constructor that will be used to instantiate the mapped entity and is also used to express required columns. In this case the name column is required and immutable whilst the age column is not and can be set independently using the setAge setter.
 
-   The findByName method in the OwnerRepsitory class will produce a query such as SELECT ID, NAME, AGE FROM OWNER WHERE NAME = ? automatically at compilation time.
+1. Create the `OwnerRepository` classes:
 
-   For more information on query methods and the types of queries you can define see the [documentation for query methods](https://micronaut-projects.github.io/micronaut-data/latest/guide/index.html#querying) in the Micronaut Data documentation.
+   ```bash
+   nano src/main/java/example/atp/repositories/OwnerRepository.java
+   ```
 
+   With the following content:
    ```Java
    package example.atp.repositories;
 
@@ -271,6 +270,16 @@ The `dependencies` block will now look like this:
    }
    ```
 
+   Repository interfaces allow you to implement queries. The CrudRepository interface takes two generic argument types. The first is the type of the entity, in this case Owner, and the second is the type of the ID, whcih is a Long.
+
+   The CrudRepository interface defines methods that allow you to create, read, update and delete (CRUD) entities from the database with the appropriate SQL inserts, selects, updates and deletes computed for you at compilation time. For more information see the javadoc for [CrudRepository](https://micronaut-projects.github.io/micronaut-data/latest/api/io/micronaut/data/repository/CrudRepository.html).
+
+   You can define methods within the interface that perform JDBC queries and automatically handle all the intricate details for you such as defining correct transaction semantics such as read-only transactions for queries, executing the query and mapping the result set to the Owner entity class you defined earlier.
+
+   The findByName method in the OwnerRepsitory class will produce a query such as SELECT ID, NAME, AGE FROM OWNER WHERE NAME = ? automatically at compilation time.
+
+   For more information on query methods and the types of queries you can define see the [documentation for query methods](https://micronaut-projects.github.io/micronaut-data/latest/guide/index.html#querying) in the Micronaut Data documentation.
+
 1. The application `src/main/java/example/atp/Application.java` currently looks like this:
    ```Java
    package example.atp;
@@ -285,6 +294,12 @@ The `dependencies` block will now look like this:
    }
    ```
    Modify `Application.java` to look like this to populate some data for the OWNER table on startup. To do this you can use [Micronaut application events](https://docs.micronaut.io/latest/guide/index.html#contextEvents).
+
+      **Note:** The easiest way to do this is delete the file and recreate it:
+         ```bash
+         rm src/main/java/example/atp/Application.java
+         nano src/main/java/example/atp/Application.java
+         ```
 
    ```Java
    package example.atp;
@@ -334,55 +349,6 @@ The `dependencies` block will now look like this:
            ownerRepository.saveAll(Arrays.asList(fred, barney));
        }
    }
-   ```
-
-1. Create the database user schema by creating the `data/createUser.sql` file with the following contents:
-   ```sql
-   CREATE USER mnocidemo IDENTIFIED BY HandsOnLabUser1;
-
-   GRANT
-   CREATE SESSION,
-   RESOURCE,
-   UNLIMITED TABLESPACE,
-   CREATE TABLE,
-   CREATE VIEW,
-   CREATE SEQUENCE,
-   CREATE PROCEDURE,
-   CREATE TYPE,
-   CREATE SYNONYM
-   TO mnocidemo;
-
-   /* for SQL Developer Web */
-   BEGIN
-    ords_admin.enable_schema(
-     p_enabled => TRUE,
-     p_schema => 'mnocidemo',
-     p_url_mapping_type => 'BASE_PATH',
-     p_url_mapping_pattern => 'mnocidemo',
-     p_auto_rest_auth => NULL
-    );
-    COMMIT;
-   END;
-   /
-
-   EXIT;
-   ```
-
-   **Note:** If for any reason you want to start over and cleanup the database:
-   ```sql
-   DROP USER mnocidemo CASCADE;
-   DROP TABLE pet;
-   DROP TABLE owner;
-   ```
-
-2. Create the OWNER table by creating the `data/createOwner.sql` file with the following contents:
-   ```sql
-   CREATE TABLE OWNER (ID NUMBER(19) GENERATED ALWAYS AS IDENTITY PRIMARY KEY NOT NULL,
-                       AGE NUMBER(10) NOT NULL,
-                       NAME VARCHAR(255) NOT NULL)
-   /
-
-   EXIT;
    ```
 
 ## Step 1.2 - Setup the database and build the application
