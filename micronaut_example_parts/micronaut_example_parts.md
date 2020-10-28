@@ -300,7 +300,8 @@ The `dependencies` block will now look like this:
       rm src/main/java/example/atp/Application.java
       nano src/main/java/example/atp/Application.java
       ```
-
+      
+   With the following content:
    ```Java
    package example.atp;
 
