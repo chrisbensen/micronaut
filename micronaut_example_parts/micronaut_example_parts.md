@@ -59,7 +59,7 @@ Prerequisites
    mkdir data
    ```
 
-1. Configure the Micronaut application to work with Autonomous Database. First delete `application.yml`, then create a new one:
+1. To configure the Micronaut application to work with Autonomous Database the connection properties need to be configured in the `application.yml`. Delete the auto generated file then create a new one:
    ```bash
    rm src/main/resources/application.yml
    nano src/main/resources/application.yml
@@ -90,12 +90,12 @@ Prerequisites
              fanEnabled: false
    ```
 
-1. Delete the existing src/main/resources/application-test.yml file so that you can run tests against the Autonomous database instance.
+1. Delete the existing `src/main/resources/application-test.yml` file, it isn't needed because we want to run tests against the Autonomous database instance.
    ```bash
    rm src/main/resources/application-test.yml
    ```
 
-1. Open `build.gradle` in the root of the project. In the `dependencies` block below the line ```runtimeOnly("com.oracle.database.jdbc:ojdbc8")``` add the following additional dependencies required to connect to Autonomous Database:
+1. There are three runtime dependencies the project has that need to be added to the Gradle build. Open `build.gradle` in the root of the project. In the `dependencies` block below the line ```runtimeOnly("com.oracle.database.jdbc:ojdbc8")``` add the following additional dependencies required to connect to Autonomous Database:
    ```
    runtimeOnly('com.oracle.database.security:oraclepki:19.7.0.0')
    runtimeOnly('com.oracle.database.security:osdt_cert:19.7.0.0')
@@ -132,7 +132,12 @@ The `dependencies` block will now look like this:
    }
    ```
 
-1. Create the database user schema by creating the `data/createUser.sql` file with the following contents:
+1. The database needs a user specific to this app that is not admin. Create the database user schema that will create a user with all the correct privileges by creating the `createUser.sql` file:
+   ```bash
+   nano data/createUser.sql
+   ```
+
+   With the following content:
    ```sql
    CREATE USER mnocidemo IDENTIFIED BY HandsOnLabUser1;
 
