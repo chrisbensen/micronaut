@@ -245,8 +245,7 @@ The `dependencies` block will now look like this:
 
    The @Creator annotation is used on the constructor that will be used to instantiate the mapped entity and is also used to express required columns. In this case the name column is required and immutable whilst the age column is not and can be set independently using the setAge setter.
 
-1. Create the `OwnerRepository` classes:
-
+1. Repository interfaces allow you to implement queries. The CrudRepository interface takes two generic argument types. The first is the type of the entity, in this case Owner, and the second is the type of the ID, which is of type Long. Create the `OwnerRepository` classes:
    ```bash
    nano src/main/java/example/atp/repositories/OwnerRepository.java
    ```
@@ -275,8 +274,6 @@ The `dependencies` block will now look like this:
    }
    ```
 
-   Repository interfaces allow you to implement queries. The CrudRepository interface takes two generic argument types. The first is the type of the entity, in this case Owner, and the second is the type of the ID, whcih is a Long.
-
    The CrudRepository interface defines methods that allow you to create, read, update and delete (CRUD) entities from the database with the appropriate SQL inserts, selects, updates and deletes computed for you at compilation time. For more information see the javadoc for [CrudRepository](https://micronaut-projects.github.io/micronaut-data/latest/api/io/micronaut/data/repository/CrudRepository.html).
 
    You can define methods within the interface that perform JDBC queries and automatically handle all the intricate details for you such as defining correct transaction semantics such as read-only transactions for queries, executing the query and mapping the result set to the Owner entity class you defined earlier.
@@ -298,7 +295,7 @@ The `dependencies` block will now look like this:
        }
    }
    ```
-   Modify `Application.java` to look like this to populate some data for the OWNER table on startup. To do this you can use [Micronaut application events](https://docs.micronaut.io/latest/guide/index.html#contextEvents).
+   Modify `Application.java` to look like this to populate some data for the OWNER table on startup by using the entity and repository classes created above. To do this you can use [Micronaut application events](https://docs.micronaut.io/latest/guide/index.html#contextEvents).
 
       **Note:** The easiest way to do this is delete the file and recreate it:
       ```bash
@@ -359,12 +356,14 @@ The `dependencies` block will now look like this:
 
 ## Step 1.2 - Setup the database and build the application
 
-1. Run this SQL to setup the user in the ADB for the app. It will be run from the admin account:
+In this step the schemas will be applied to the database, the application will be compiled and then ran, then we will validate that everything performed as expected.
+
+1. Run this SQL to setup the user in the ADB for the app from the admin user. It will be run from the admin account:
    ```bash
    /opt/oracle/sqlcl/bin/sql admin/Commodore-64@mnociatp_tp @data/createUser.sql
    ```
 
-1. Run this SQL to setup the schema in the database for the app. This will create the OWNER table under the mnocidemo account crated above:
+1. Run this SQL to setup the schema in the database for the app as the application user. This will create the OWNER table under the mnocidemo account crated above:
    ```bash
    /opt/oracle/sqlcl/bin/sql mnocidemo/${DATASOURCES_DEFAULT_PASSWORD}@mnociatp_tp @data/createOwner.sql
    ```
@@ -408,7 +407,7 @@ The `dependencies` block will now look like this:
 
    Then type `exit`
 
-1. The first step is complete. You have a database, one table, and a Micronaut application that writes data to that one table.
+   The first step is complete. You have a database, one table, and a Micronaut application that writes data to that one table. Continue to the next step to add another table to the application
 
 ## Step 2.1 - Add the PET table
 
@@ -436,7 +435,7 @@ The `dependencies` block will now look like this:
    ```
 
 
-1. Create the `Pet` classes:
+1. Create the `Pet` entity classes:
    ```bash
    nano src/main/java/example/atp/domain/Pet.java
    ```
@@ -633,7 +632,7 @@ The `dependencies` block will now look like this:
 
 ## Step 2.2 - Setup the database and build the application
 
-1. Run this SQL to setup the schema in the database for the app. This will create the OWNER table:
+1. Run this SQL to setup the schema in the database for the app as the application user. This will create the OWNER table:
    ```bash
    /opt/oracle/sqlcl/bin/sql mnocidemo/${DATASOURCES_DEFAULT_PASSWORD}@mnociatp_tp @data/createPet.sql
    ```
