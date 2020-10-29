@@ -2,13 +2,11 @@
 
 ## Introduction
 
-TODO
+This lab will cleanup the resources after the lab. It is not necessary unless you want to have your computer and your cloud tenancy rewind in time like this lab never happened.
 
-## Cleanup
+## Cloud
 
-1. To clean up all of the OCI resources created by Terraform, run 'Destroy' on the stack.
-
-TODO Update this with manual steps.
+1. To clean up all of the OCI resources created by this lab simply terminate the VM and the ATP instances and delete the Container.
 
 ## Local Cleanup
 
@@ -17,17 +15,11 @@ TODO Update this with manual steps.
    rm ~/.ssh/local_id_rsa.pub
    ```
 
-1.
-
 ## Cloud Shell
 
 1. In Cloud Shell an RSA key was created. If you remove it you will no longer have access to the remote compute instance.
    ```
    rm ~/.ssh/cloud_shell_id_rsa.pub
-   ```
-
-1.
-   ```
    rm Wallet_micronaut.zip
    ```
 
