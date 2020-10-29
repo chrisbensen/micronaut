@@ -4,7 +4,7 @@
 
 In this lab you will build an already build Micronaut application that connects to Oracle Autonomous Database.
 
-Estimated Lab Time: 30 minutes
+Estimated Lab Time: 60 minutes
 
 Objectives
 
