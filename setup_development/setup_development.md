@@ -87,52 +87,6 @@ Prerequisites
    sdk install gradle
    ```
 
-1. TODO Setup VNC
-
-   https://docs.oracle.com/en/operating-systems/oracle-linux/7/network/ol7-vnc.html#ol7-vnc-about
-
-   ```
-   sudo yum install -y tigervnc-server
-
-   sudo useradd vncuser
-   sudo passwd vncuser
-   ```
-
-   Enter **Commodore-64** as the password.
-
-   ```
-   sudo cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@\:display.service
-   sudo cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver-vncuser@\:display.service
-
-   sudo nano /etc/systemd/system/vncserver-vncuser
-   ```
-
-   ```
-   [Service]
-   Type=forking
-   WorkingDirectory=/home/vncuser
-   User=vncuser
-   Group=vncuser
-
-   # Clean any existing files in /tmp/.X11-unix environment
-   ExecStartPre=/bin/sh -c '/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :'
-   ExecStart=/usr/bin/vncserver %i
-   PIDFile=/home/vncuser/.vnc/%H%i.pid
-   ExecStop=/usr/bin/vncserver -kill %i
-   ```
-
-
-   ```
-   sudo systemctl daemon-reload
-   sudo firewall-cmd --permanent --zone=public --add-service=vnc-server
-   sudo firewall-cmd --reload
-   ```
-
-   TODO open up the port 5900
-
-   vnc://158.101.4.33
-
-
 ## Continue through the following section
 
 1. [Micronaut Example](micronaut_example/micronaut_example.md)
