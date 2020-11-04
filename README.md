@@ -1,4 +1,4 @@
-# Workshop with a single set of labs
+# Micronaut on OCI Workshop
 
 ## Instructions
 
