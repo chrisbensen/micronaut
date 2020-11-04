@@ -133,7 +133,7 @@ The `dependencies` block will now look like this:
    ```
 
 1. The database needs a user specific to this app that is not admin. Create the database user schema that will create a user with all the correct privileges by creating the `createUser.sql` file:
-   ```bash
+   ```sql
    nano data/createUser.sql
    ```
 
